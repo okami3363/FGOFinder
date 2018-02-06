@@ -19,11 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow(frame: UIScreen.main.bounds);
         let tabBarController = UITabBarController()
-        let firstViewController = FirstViewController()
-        firstViewController.title = "Servant"
-        let secondViewController = SecondViewController()
-        secondViewController.title = "概念禮裝"
-        tabBarController.viewControllers = [firstViewController, secondViewController]
+        let cardViewController = CardViewController()
+        cardViewController.title = "霊基一覧"
+        
+        tabBarController.viewControllers = [cardViewController]
         self.window?.rootViewController = tabBarController
         
         self.window?.makeKeyAndVisible()
