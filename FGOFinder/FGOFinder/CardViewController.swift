@@ -10,8 +10,8 @@ import UIKit
 
 class CardViewController: UIViewController, UICollectionViewDataSource {
     
-    var collectionView:UICollectionView?
-    var layout: UICollectionViewFlowLayout?
+    var collectionView:UICollectionView!
+    var layout: UICollectionViewFlowLayout!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,18 +44,23 @@ class CardViewController: UIViewController, UICollectionViewDataSource {
 //        self.flowLayout?.minimumLineSpacing = 10
         
         self.layout = UICollectionViewFlowLayout()
-        self.layout!.itemSize = CGSize (width: 60, height: 60)
+        
+        let width = ((UIScreen.main.bounds.size.width-(2*(UIScreen.main.bounds.size.width/20)))-(10*7))/6
+        self.layout.minimumLineSpacing = 10
+        self.layout.minimumInteritemSpacing = 10
+        self.layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
+        self.layout.itemSize = CGSize (width: width, height: width)
         
         
         
         
-        self.collectionView = UICollectionView.init(frame: UIScreen.main.bounds, collectionViewLayout:self.layout!)
-        self.collectionView?.backgroundColor = UIColor.gray
-        self.collectionView?.dataSource = self
-//        self.collectionView?.delegate = self
-        self.collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         
-        self.view.addSubview(self.collectionView!)
+        self.collectionView = UICollectionView.init(frame: CGRect (x: UIScreen.main.bounds.size.width/20, y: 0, width: UIScreen.main.bounds.size.width-(2*(UIScreen.main.bounds.size.width/20)), height: UIScreen.main.bounds.size.height), collectionViewLayout:self.layout!)
+        self.collectionView.backgroundColor = UIColor.gray
+        self.collectionView.dataSource = self
+        self.collectionView.register(CardCell.self, forCellWithReuseIdentifier: "Cell")
+        
+        self.view.addSubview(self.collectionView)
     }
     
     //MARK: - UICollectionViewDataSource
@@ -65,11 +70,14 @@ class CardViewController: UIViewController, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        cell.contentView.backgroundColor = UIColor.red
         
         
-        return cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as?CardCell
+//        cell?.contentView.backgroundColor = UIColor.red
+        cell!.cardImageView.image = UIImage.init(named: "3032000")
+        
+        
+        return cell!
         
     }
 
