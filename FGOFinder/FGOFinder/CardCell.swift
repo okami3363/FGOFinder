@@ -20,8 +20,10 @@ class CardCell: UICollectionViewCell {
     }
     
     func setupUI() -> Void {
-        self.cardImageView = UIImageView(frame: CGRect (x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height))
-        self.contentView.addSubview(self.cardImageView)
+        
+        cardImageView = UIImageView(frame: CGRect (x: 0, y: 0, width: frame.size.width, height: frame.size.height))
+        contentView.addSubview(self.cardImageView)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

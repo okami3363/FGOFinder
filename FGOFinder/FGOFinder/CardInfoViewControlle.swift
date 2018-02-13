@@ -19,6 +19,7 @@ class CardInfoViewControlle: UIViewController, UICollectionViewDataSource {
         // Do any additional setup after loading the view.
         setupUI()
         setupDataSource()
+        
     }
 
     override func didReceiveMemoryWarning() -> Void {
@@ -70,7 +71,7 @@ class CardInfoViewControlle: UIViewController, UICollectionViewDataSource {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = true
         collectionView.dataSource = self
-        collectionView.register(CardCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView.register(ServantPhotoCell.self, forCellWithReuseIdentifier: "Cell")
         view.addSubview(collectionView)
         
     }
@@ -79,36 +80,39 @@ class CardInfoViewControlle: UIViewController, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return servantPhotoDataSource!.count
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as?CardCell
-//        cell!.cardImageView.image = servantPhotoDataSource![indexPath.row] as?UIImage
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as?ServantPhotoCell
+        
+        cell!.servantImageView.image = servantPhotoDataSource![indexPath.row] as?UIImage
+        
         switch indexPath.row%2 {
         case 0:
-            cell!.backgroundColor = UIColor.blue
+            cell!.servantImageView.frame = cell!.servantImageDefaultRect
+
         case 1:
-            cell!.backgroundColor = UIColor.green
+            cell!.servantImageView.frame = CGRect (x: cell!.servantImageDefaultRect.origin.x-(cell!.servantImageDefaultRect.size.width/2), y: cell!.servantImageDefaultRect.origin.y, width: cell!.servantImageDefaultRect.size.width, height: cell!.servantImageDefaultRect.size.height)
+
         default:
-            cell!.backgroundColor = UIColor.white
+            cell!.servantImageView.frame = cell!.servantImageDefaultRect
+            
         }
         
-        
-//        cell!.cardImageView.contentMode = .scaleAspectFit
-//        cell!.cardImageView.contentMode = .left
         return cell!
         
     }
     
     
     
-    //MARK: - UICollectionViewDelegateFlowLayout
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        
-        return UIEdgeInsetsMake(10, 10, 10, 10)
-        
-    }
+//    //MARK: - UICollectionViewDelegateFlowLayout
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//
+//        return UIEdgeInsetsMake(10, 10, 10, 10)
+//
+//    }
     
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 //        let size = ((servantPhotoDataSource![indexPath.row] as?UIImage)?.size)!
