@@ -18,11 +18,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         self.window = UIWindow(frame: UIScreen.main.bounds);
-        let tabBarController = UITabBarController()
+        
+        let navigationController = UINavigationController()
         let cardViewController = CardViewController()
         cardViewController.title = "霊基一覧"
+        navigationController.viewControllers = [cardViewController]
         
-        tabBarController.viewControllers = [cardViewController]
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [navigationController]
+        tabBarController.tabBar.isHidden = true
         self.window?.rootViewController = tabBarController
         
         self.window?.makeKeyAndVisible()

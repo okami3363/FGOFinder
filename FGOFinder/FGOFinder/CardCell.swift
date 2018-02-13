@@ -19,7 +19,7 @@ class CardCell: UICollectionViewCell {
         
     }
     
-    func setupUI() {
+    func setupUI() -> Void {
         self.cardImageView = UIImageView(frame: CGRect (x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height))
         self.contentView.addSubview(self.cardImageView)
     }
