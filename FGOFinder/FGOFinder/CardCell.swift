@@ -13,17 +13,13 @@ class CardCell: UICollectionViewCell {
     var cardImageView: UIImageView!
     
     override init(frame: CGRect) {
-        
         super.init(frame: frame)
         setupUI()
-        
     }
     
     func setupUI() -> Void {
-        
         cardImageView = UIImageView(frame: CGRect (x: 0, y: 0, width: frame.size.width, height: frame.size.height))
         contentView.addSubview(self.cardImageView)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

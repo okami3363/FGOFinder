@@ -14,10 +14,8 @@ class ServantPhotoCell: UICollectionViewCell {
     var servantImageDefaultRect: CGRect!
     
     override init(frame: CGRect) {
-        
         super.init(frame: frame)
         setupUI()
-        
     }
     
     func setupUI() -> Void {
@@ -28,7 +26,6 @@ class ServantPhotoCell: UICollectionViewCell {
         servantImageView = UIImageView(frame: servantImageDefaultRect)
         servantImageView.contentMode = .scaleAspectFit
         contentView.addSubview(servantImageView)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

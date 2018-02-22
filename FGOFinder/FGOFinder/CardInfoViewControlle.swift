@@ -10,63 +10,67 @@ import UIKit
 
 class CardInfoViewControlle: UIViewController, UICollectionViewDataSource {
     
+    var backButton: UIButton!
+    
     var collectionView: UICollectionView!
     var servantPhotoDataSource: NSArray?
+    
+    var height: CGFloat!
+    var width: CGFloat!
+    
+    var tableView:UITableView!
 
     override func viewDidLoad() -> Void {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
         setupUI()
         setupDataSource()
-        
     }
+    
 
     override func didReceiveMemoryWarning() -> Void {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     func setupDataSource() -> Void {
-        
         servantPhotoDataSource = setupServantPhotoDataSource()
         collectionView.reloadData()
         
+        performSelector(onMainThread: #selector(scrollToDefaultServantPhoto), with: nil, waitUntilDone: false)
     }
     
     func setupServantPhotoDataSource() -> NSArray {
-        
         return [UIImage.init(named: "303200a")!, UIImage.init(named: "303200a")!, UIImage.init(named: "303200b")!, UIImage.init(named: "303200b")!]
+    }
+    
+    @objc func scrollToDefaultServantPhoto() -> Void {
+        let rect = CGRect (x: width*3, y: 0, width: width, height: height)
+        self.collectionView.scrollRectToVisible(rect, animated: false)
         
+//        self.collectionView.scrollToItem(at: IndexPath.init(row: servantPhotoDataSource!.count-1, section: 0), at: .left, animated: false)
     }
     
     func setupUI() -> Void {
-        
         view.backgroundColor = UIColor.black
         
-        let scale = 512.0/724.0
-        let height = UIScreen.main.bounds.size.height-navigationController!.navigationBar.frame.size.height
-        let width = CGFloat(height)*CGFloat(scale)
+        backButton = UIButton.init(type: .custom)
+        backButton.frame = CGRect (x: 0, y: 0, width: UIScreen.main.bounds.size.width/20, height: UIScreen.main.bounds.size.width/20)
+        backButton.setTitle("<-", for: .normal)
+        backButton.setTitleColor(UIColor.blue, for: .normal)
+        backButton.layer.borderColor = UIColor.blue.cgColor
+        backButton.layer.borderWidth = 1
+        backButton.addTarget(self, action: #selector(backAction(sender:)), for: .touchUpInside)
+        view.addSubview(backButton)
+        
+        width = LayoutFormula().servantPhotoSize().width
+        height = LayoutFormula().servantPhotoSize().height
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
-        layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
         layout.itemSize = CGSize (width: width, height: height)
         
-        collectionView = UICollectionView.init(frame: CGRect (x: UIScreen.main.bounds.size.width/20, y: navigationController!.navigationBar.frame.origin.y+navigationController!.navigationBar.frame.size.height, width: width, height: height), collectionViewLayout:layout)
+        collectionView = UICollectionView.init(frame: CGRect (x: UIScreen.main.bounds.size.width/20, y: 0, width: width, height: height), collectionViewLayout:layout)
         collectionView.backgroundColor = UIColor.red
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = true
@@ -74,17 +78,22 @@ class CardInfoViewControlle: UIViewController, UICollectionViewDataSource {
         collectionView.register(ServantPhotoCell.self, forCellWithReuseIdentifier: "Cell")
         view.addSubview(collectionView)
         
+        tableView = UITableView.init(frame: CGRect (x: collectionView.frame.origin.x+collectionView.frame.size.width+20, y: 0, width: UIScreen.main.bounds.width-(UIScreen.main.bounds.size.width/20)-(collectionView.frame.origin.x+collectionView.frame.size.width+20), height: height))
+        tableView.backgroundColor = UIColor.white
+        view.addSubview(tableView)
+        
+    }
+    
+    @objc func backAction(sender: UIButton) -> Void {
+        navigationController!.popViewController(animated: true)
     }
     
     //MARK: - UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return servantPhotoDataSource!.count
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as?ServantPhotoCell
         
         cell!.servantImageView.image = servantPhotoDataSource![indexPath.row] as?UIImage
@@ -102,23 +111,5 @@ class CardInfoViewControlle: UIViewController, UICollectionViewDataSource {
         }
         
         return cell!
-        
     }
-    
-    
-    
-//    //MARK: - UICollectionViewDelegateFlowLayout
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//
-//        return UIEdgeInsetsMake(10, 10, 10, 10)
-//
-//    }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let size = ((servantPhotoDataSource![indexPath.row] as?UIImage)?.size)!
-//        print(size)
-//        return size
-//
-//    }
-
 }

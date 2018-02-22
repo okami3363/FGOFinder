@@ -27,27 +27,15 @@ class CardViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     override func viewDidLoad() -> Void {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
         setupUI()
         setupDataSource()
-        
     }
     
     override func didReceiveMemoryWarning() -> Void {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     func setupDataSource() -> Void {
         dataSource = (showType == ShowType.servant ? self.setupServantDataSource() :self.setupCraftEssenceDataSource())
         collectionView.reloadData()
@@ -74,7 +62,6 @@ class CardViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     
     func setupUI() -> Void {
-        
         view.backgroundColor = UIColor.black
         
         layout = UICollectionViewFlowLayout()
@@ -84,7 +71,7 @@ class CardViewController: UIViewController, UICollectionViewDataSource, UICollec
         layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
         layout.itemSize = CGSize (width: width, height: width)
         
-        actionBar = UIView(frame: CGRect(x: UIScreen.main.bounds.size.width/20, y: 0+navigationController!.navigationBar.frame.size.height, width: UIScreen.main.bounds.size.width-(2*(UIScreen.main.bounds.size.width/20)), height: 40));
+        actionBar = UIView(frame: CGRect(x: UIScreen.main.bounds.size.width/20, y: 0, width: UIScreen.main.bounds.size.width-(2*(UIScreen.main.bounds.size.width/20)), height: 40));
         actionBar.backgroundColor = UIColor.white
         view.addSubview(actionBar)
         
@@ -116,25 +103,20 @@ class CardViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     //MARK: - UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return dataSource!.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as?CardCell
         cell!.cardImageView.image = dataSource![indexPath.row] as?UIImage
         
         return cell!
-        
     }
     
     //MARK: - UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         let cardInfoViewControlle: CardInfoViewControlle = CardInfoViewControlle()
         navigationController?.pushViewController(cardInfoViewControlle, animated: true)
-        
     }
     
 }

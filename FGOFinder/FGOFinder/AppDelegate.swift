@@ -21,8 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let navigationController = UINavigationController()
         let cardViewController = CardViewController()
-        cardViewController.title = "霊基一覧"
         navigationController.viewControllers = [cardViewController]
+        navigationController.navigationBar.isHidden = true
         
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [navigationController]
