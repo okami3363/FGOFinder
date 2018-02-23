@@ -81,7 +81,6 @@ class CardInfoViewControlle: UIViewController, UICollectionViewDataSource {
         tableView = UITableView.init(frame: CGRect (x: collectionView.frame.origin.x+collectionView.frame.size.width+20, y: 0, width: UIScreen.main.bounds.width-(UIScreen.main.bounds.size.width/20)-(collectionView.frame.origin.x+collectionView.frame.size.width+20), height: height))
         tableView.backgroundColor = UIColor.white
         view.addSubview(tableView)
-        
     }
     
     @objc func backAction(sender: UIButton) -> Void {
@@ -107,7 +106,6 @@ class CardInfoViewControlle: UIViewController, UICollectionViewDataSource {
 
         default:
             cell!.servantImageView.frame = cell!.servantImageDefaultRect
-            
         }
         
         return cell!

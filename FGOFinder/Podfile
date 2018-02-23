@@ -1,0 +1,7 @@
+platform :ios, '10.0'
+
+target 'FGOFinder' do
+use_frameworks!
+
+pod 'AFNetworking'
+end

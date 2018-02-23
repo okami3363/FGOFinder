@@ -43,6 +43,7 @@ xcuserdata
 *.xcscheme
 
 *.DS_Store
+
 ## Obj-C/Swift specific
 
 *.hmap
@@ -61,7 +62,11 @@ xcuserdata
 
 #
 
-# Pods/
+*.xcworkspace
+
+Podfile.lock
+
+Pods/
 
 # Carthage
 
