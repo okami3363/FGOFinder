@@ -37,6 +37,11 @@ class CardViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func setupDataSource() -> Void {
+        
+        FFRequestHandler().responseJSON(url: "https://fgo-vz.azurewebsites.net/Servant/") { (dataResponse) in
+            print(dataResponse)
+        }
+        
         dataSource = (showType == ShowType.servant ? self.setupServantDataSource() :self.setupCraftEssenceDataSource())
         collectionView.reloadData()
     }
@@ -59,7 +64,6 @@ class CardViewController: UIViewController, UICollectionViewDataSource, UICollec
         showType = ShowType.craftEssence
         setupDataSource()
     }
-    
     
     func setupUI() -> Void {
         view.backgroundColor = UIColor.black

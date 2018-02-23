@@ -12,6 +12,7 @@
 		6325AB6120295FD200D7672D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6325AB6020295FD200D7672D /* Assets.xcassets */; };
 		6325AB6420295FD200D7672D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6325AB6220295FD200D7672D /* LaunchScreen.storyboard */; };
 		635756D52032998D0027909E /* CardInfoViewControlle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635756D42032998D0027909E /* CardInfoViewControlle.swift */; };
+		636772A92040114B00AA048E /* FFRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636772A82040114B00AA048E /* FFRequestHandler.swift */; };
 		71C570912033572400284040 /* ServantPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C570902033572400284040 /* ServantPhotoCell.swift */; };
 		71F9942E202A0894009147E0 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F9942D202A0894009147E0 /* CardViewController.swift */; };
 		71F99432202EFED2009147E0 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F99431202EFED2009147E0 /* CardCell.swift */; };
@@ -26,6 +27,7 @@
 		6325AB6320295FD200D7672D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6325AB6520295FD200D7672D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		635756D42032998D0027909E /* CardInfoViewControlle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInfoViewControlle.swift; sourceTree = "<group>"; };
+		636772A82040114B00AA048E /* FFRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFRequestHandler.swift; sourceTree = "<group>"; };
 		71C570902033572400284040 /* ServantPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServantPhotoCell.swift; sourceTree = "<group>"; };
 		71F9942D202A0894009147E0 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		71F99431202EFED2009147E0 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				635756D42032998D0027909E /* CardInfoViewControlle.swift */,
 				71C570902033572400284040 /* ServantPhotoCell.swift */,
 				6319F63B203EA7F2001BEE5A /* LayoutFormula.swift */,
+				636772A82040114B00AA048E /* FFRequestHandler.swift */,
 				6325AB6020295FD200D7672D /* Assets.xcassets */,
 				6325AB6220295FD200D7672D /* LaunchScreen.storyboard */,
 				6325AB6520295FD200D7672D /* Info.plist */,
@@ -207,11 +210,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-FGOFinder/Pods-FGOFinder-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -229,6 +232,7 @@
 				71F9942E202A0894009147E0 /* CardViewController.swift in Sources */,
 				6319F63C203EA7F2001BEE5A /* LayoutFormula.swift in Sources */,
 				71C570912033572400284040 /* ServantPhotoCell.swift in Sources */,
+				636772A92040114B00AA048E /* FFRequestHandler.swift in Sources */,
 				6325AB5820295FD200D7672D /* AppDelegate.swift in Sources */,
 				71F99432202EFED2009147E0 /* CardCell.swift in Sources */,
 			);
