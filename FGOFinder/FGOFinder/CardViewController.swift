@@ -119,7 +119,7 @@ class CardViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     //MARK: - UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cardInfoViewControlle: CardInfoViewControlle = CardInfoViewControlle()
+        let cardInfoViewControlle: CardInfoViewController = CardInfoViewController()
         navigationController?.pushViewController(cardInfoViewControlle, animated: true)
     }
     

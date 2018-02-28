@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CardInfoViewControlle: UIViewController, UICollectionViewDataSource {
+class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITableViewDataSource {
     
     var backButton: UIButton!
     
@@ -80,11 +80,28 @@ class CardInfoViewControlle: UIViewController, UICollectionViewDataSource {
         
         tableView = UITableView.init(frame: CGRect (x: collectionView.frame.origin.x+collectionView.frame.size.width+20, y: 0, width: UIScreen.main.bounds.width-(UIScreen.main.bounds.size.width/20)-(collectionView.frame.origin.x+collectionView.frame.size.width+20), height: height))
         tableView.backgroundColor = UIColor.white
+        tableView.dataSource = self
+        tableView.register(KeepSkillsCell.self, forCellReuseIdentifier: "Cell")
         view.addSubview(tableView)
     }
     
     @objc func backAction(sender: UIButton) -> Void {
         navigationController!.popViewController(animated: true)
+    }
+    
+    //MARK: - UITableViewDataSource
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell: KeepSkillsCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! KeepSkillsCell
+        
+        cell.skillImageView.image = UIImage.init(named: "SkillIcon_403")
+        cell.skillDescriptionLabel.text = "秘められた大王冠 A"
+        
+        return cell
     }
     
     //MARK: - UICollectionViewDataSource
