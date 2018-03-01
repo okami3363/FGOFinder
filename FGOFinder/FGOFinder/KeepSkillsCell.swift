@@ -10,6 +10,7 @@ import UIKit
 
 class KeepSkillsCell: UITableViewCell {
 
+    var skillNumberLabel: UILabel!
     var skillImageView: UIImageView!
     var skillDescriptionLabel: UILabel!
     
@@ -23,10 +24,13 @@ class KeepSkillsCell: UITableViewCell {
     }
     
     func setupUI() -> Void {
-        skillImageView = UIImageView(frame: CGRect (x: 0, y: 0, width: 40, height: 40))
+        skillNumberLabel = UILabel(frame: CGRect (x: 10, y: 10, width: 45, height: 20))
+        contentView.addSubview(skillNumberLabel)
+        
+        skillImageView = UIImageView(frame: CGRect (x: skillNumberLabel.frame.origin.x+skillNumberLabel.frame.size.width+10, y: skillNumberLabel.frame.origin.y, width: 60, height: 60))
         contentView.addSubview(self.skillImageView)
         
-        skillDescriptionLabel = UILabel(frame: CGRect (x: skillImageView.frame.origin.x+skillImageView.frame.size.width+10, y: skillImageView.frame.origin.y, width: frame.size.width-(frame.origin.x+skillImageView.frame.size.width+10), height: frame.size.height))
+        skillDescriptionLabel = UILabel(frame: CGRect (x: skillImageView.frame.origin.x+skillImageView.frame.size.width+10, y: skillImageView.frame.origin.y, width: frame.size.width-(frame.origin.x+skillImageView.frame.size.width+10), height: skillImageView.frame.size.height))
         contentView.addSubview(self.skillDescriptionLabel)
     }
 

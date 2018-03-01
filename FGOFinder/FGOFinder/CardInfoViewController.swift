@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITableViewDataSource {
+class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate {
     
     var backButton: UIButton!
     
@@ -81,6 +81,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         tableView = UITableView.init(frame: CGRect (x: collectionView.frame.origin.x+collectionView.frame.size.width+20, y: 0, width: UIScreen.main.bounds.width-(UIScreen.main.bounds.size.width/20)-(collectionView.frame.origin.x+collectionView.frame.size.width+20), height: height))
         tableView.backgroundColor = UIColor.white
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.register(KeepSkillsCell.self, forCellReuseIdentifier: "Cell")
         view.addSubview(tableView)
     }
@@ -99,9 +100,20 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         let cell: KeepSkillsCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! KeepSkillsCell
         
         cell.skillImageView.image = UIImage.init(named: "SkillIcon_403")
+        cell.skillNumberLabel.text = "skill \(indexPath.row+1)"
         cell.skillDescriptionLabel.text = "秘められた大王冠 A"
         
         return cell
+    }
+    
+    
+    //MARK: - UITableViewDelegate
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        var rowHeight = 0
+        
+        rowHeight = rowHeight+10+60+10
+        
+        return CGFloat(rowHeight)
     }
     
     //MARK: - UICollectionViewDataSource
