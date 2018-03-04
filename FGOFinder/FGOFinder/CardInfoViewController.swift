@@ -99,9 +99,35 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         
         let cell: KeepSkillsCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! KeepSkillsCell
         
+        let skillDescription: String! = "對自身隨機賦予各種效果[Lv.]\n以機率賦予弱體無效狀態[Lv.](1回合)\n┗以機率賦予即死無效狀態[Lv.](1回合)\n┗以機率賦予強化解除耐性提升100%[Lv.](1回合)\n60%|62%|64%|66%|68%|70%|72%|74%|76%|78%|80%"
+        
         cell.skillImageView.image = UIImage.init(named: "SkillIcon_403")
-        cell.skillNumberLabel.text = "skill \(indexPath.row+1)"
-        cell.skillDescriptionLabel.text = "秘められた大王冠 A"
+//        cell.skillNumberLabel.text = "SKILL \(indexPath.row+1)"
+        cell.skillNameLabel.text = "秘められた大王冠 A"
+        cell.skillColdDownLabel.text = "冷卻8回合"
+        cell.skillWhenGetLabel.text = "初期"
+//        cell.skillDescriptionLabel.text = skillDescription
+        
+        
+        var y = 0
+        var i = 0
+        for skillDescriptionLabel in cell.skillDescriptionArray {
+            
+            if i == 0 {
+                y = Int(skillDescriptionLabel.frame.origin.y)
+            }
+            
+            
+            
+            let descriptionSize: CGSize = LayoutFormula().sizeOfStringAndFont(string: skillDescription, font: UIFont.systemFont(ofSize: 14))
+                
+            skillDescriptionLabel.frame = CGRect (x: skillDescriptionLabel.frame.origin.x, y: CGFloat(y), width: descriptionSize.width, height: descriptionSize.height)
+            skillDescriptionLabel.text = skillDescription
+
+            
+            y+=Int(descriptionSize.height)
+            i+=1
+        }
         
         return cell
     }
@@ -109,9 +135,13 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     
     //MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var rowHeight = 0
         
-        rowHeight = rowHeight+10+60+10
+        let skillDescription: String! = "對自身隨機賦予各種效果[Lv.]\n以機率賦予弱體無效狀態[Lv.](1回合)\n┗以機率賦予即死無效狀態[Lv.](1回合)\n┗以機率賦予強化解除耐性提升100%[Lv.](1回合)\n60%|62%|64%|66%|68%|70%|72%|74%|76%|78%|80%"
+        let descriptionSize: CGSize = skillDescription.size(withAttributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)])
+
+        
+        var rowHeight = 0
+        rowHeight = rowHeight+10+50+10+Int(descriptionSize.height)
         
         return CGFloat(rowHeight)
     }

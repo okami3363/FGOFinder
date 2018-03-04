@@ -17,5 +17,9 @@ class LayoutFormula: NSObject {
         
         return CGSize (width: Int(width), height: Int(height))
     }
+    
+    func sizeOfStringAndFont(string: String, font: UIFont) -> CGSize {
+        return string.size(withAttributes: [NSAttributedStringKey.font: font])
+    }
 
 }
