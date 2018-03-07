@@ -19,10 +19,12 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     var width: CGFloat!
     
     var tableView:UITableView!
+    
+    var servantModel:ServantModel!
 
     override func viewDidLoad() -> Void {
         super.viewDidLoad()
-        
+        servantModel = ServantModel()
         setupUI()
         setupDataSource()
     }
@@ -92,14 +94,14 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     
     //MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return servantModel.keepSkillsArrry!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell: KeepSkillsCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! KeepSkillsCell
         
-        let skillDescription: String! = "對自身隨機賦予各種效果[Lv.]\n以機率賦予弱體無效狀態[Lv.](1回合)\n┗以機率賦予即死無效狀態[Lv.](1回合)\n┗以機率賦予強化解除耐性提升100%[Lv.](1回合)\n60%|62%|64%|66%|68%|70%|72%|74%|76%|78%|80%"
+//        let skillDescription: String! = servantModel!.keepSkillsArrry![indexPath.row]
         
         cell.skillImageView.image = UIImage.init(named: "SkillIcon_403")
 //        cell.skillNumberLabel.text = "SKILL \(indexPath.row+1)"
@@ -108,23 +110,17 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         cell.skillWhenGetLabel.text = "初期"
 //        cell.skillDescriptionLabel.text = skillDescription
         
-        
+        let keepSkillModel = servantModel.keepSkillsArrry![indexPath.row]
         var y = 0
         var i = 0
-        for skillDescriptionLabel in cell.skillDescriptionArray {
-            
+        for skillDescription in keepSkillModel.keepSkillDescriptionArrry! {
+            let skillDescriptionLabel:UILabel = cell.skillDescriptionLabelArray[i]
+            skillDescriptionLabel.text = skillDescription
             if i == 0 {
                 y = Int(skillDescriptionLabel.frame.origin.y)
             }
-            
-            
-            
-            let descriptionSize: CGSize = LayoutFormula().sizeOfStringAndFont(string: skillDescription, font: UIFont.systemFont(ofSize: 14))
-                
+            let descriptionSize: CGSize = keepSkillModel.keepSkillDescriptionSizeArray![i]
             skillDescriptionLabel.frame = CGRect (x: skillDescriptionLabel.frame.origin.x, y: CGFloat(y), width: descriptionSize.width, height: descriptionSize.height)
-            skillDescriptionLabel.text = skillDescription
-
-            
             y+=Int(descriptionSize.height)
             i+=1
         }
@@ -136,12 +132,23 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     //MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        let skillDescription: String! = "對自身隨機賦予各種效果[Lv.]\n以機率賦予弱體無效狀態[Lv.](1回合)\n┗以機率賦予即死無效狀態[Lv.](1回合)\n┗以機率賦予強化解除耐性提升100%[Lv.](1回合)\n60%|62%|64%|66%|68%|70%|72%|74%|76%|78%|80%"
-        let descriptionSize: CGSize = skillDescription.size(withAttributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)])
-
+//        let skillDescription: String! = "對自身隨機賦予各種效果[Lv.]\n以機率賦予弱體無效狀態[Lv.](1回合)\n┗以機率賦予即死無效狀態[Lv.](1回合)\n┗以機率賦予強化解除耐性提升100%[Lv.](1回合)\n60%|62%|64%|66%|68%|70%|72%|74%|76%|78%|80%"
+//        let descriptionSize: CGSize = skillDescription.size(withAttributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)])
+        
+//        let descriptionSize: CGSize = servantModel!.keepSkillsDescriptionSizeArray![indexPath.row]
         
         var rowHeight = 0
-        rowHeight = rowHeight+10+50+10+Int(descriptionSize.height)
+        
+//        var titleDescriptionHeight = 0
+        let keepSkillModel = servantModel.keepSkillsArrry![indexPath.row]
+        
+//        for descriptionSize in keepSkillModel.keepSkillDescriptionSizeArray! {
+//            titleDescriptionHeight += Int(descriptionSize.height)
+//        }
+
+        
+        
+        rowHeight = rowHeight+10+50+10+Int(keepSkillModel.titleDescriptionHeight)
         
         return CGFloat(rowHeight)
     }

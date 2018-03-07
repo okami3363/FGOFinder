@@ -16,7 +16,7 @@ class KeepSkillsCell: UITableViewCell {
     var skillColdDownLabel: UILabel!
     var skillWhenGetLabel: UILabel!
 //    var skillDescriptionLabel: UILabel!
-    var skillDescriptionArray: [UILabel]!
+    var skillDescriptionLabelArray: [UILabel]!
     
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -30,7 +30,7 @@ class KeepSkillsCell: UITableViewCell {
     
     func setupUI() -> Void {
         
-        skillDescriptionArray = []
+        skillDescriptionLabelArray = []
 //        skillNumberLabel = UILabel(frame: CGRect (x: 10, y: 10, width: 45, height: 20))
 //        skillNumberLabel.adjustsFontSizeToFitWidth = true
 //        skillNumberLabel.backgroundColor = UIColor.red
@@ -64,7 +64,7 @@ class KeepSkillsCell: UITableViewCell {
             skillDescriptionLabel.numberOfLines = 99
             contentView.addSubview(skillDescriptionLabel)
             
-            skillDescriptionArray.append(skillDescriptionLabel)
+            skillDescriptionLabelArray.append(skillDescriptionLabel)
         }
         
 //        for skillDescriptionLabel in skillDescriptionArray{

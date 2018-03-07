@@ -14,6 +14,7 @@
 		635756D52032998D0027909E /* CardInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635756D42032998D0027909E /* CardInfoViewController.swift */; };
 		636772A92040114B00AA048E /* FFRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636772A82040114B00AA048E /* FFRequestHandler.swift */; };
 		715109392047161200A7AE42 /* KeepSkillsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715109382047161200A7AE42 /* KeepSkillsCell.swift */; };
+		7169E3AE2050450D0034F41F /* ServantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7169E3AD2050450D0034F41F /* ServantModel.swift */; };
 		71C570912033572400284040 /* ServantPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C570902033572400284040 /* ServantPhotoCell.swift */; };
 		71F9942E202A0894009147E0 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F9942D202A0894009147E0 /* CardViewController.swift */; };
 		71F99432202EFED2009147E0 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F99431202EFED2009147E0 /* CardCell.swift */; };
@@ -30,6 +31,7 @@
 		635756D42032998D0027909E /* CardInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInfoViewController.swift; sourceTree = "<group>"; };
 		636772A82040114B00AA048E /* FFRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFRequestHandler.swift; sourceTree = "<group>"; };
 		715109382047161200A7AE42 /* KeepSkillsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepSkillsCell.swift; sourceTree = "<group>"; };
+		7169E3AD2050450D0034F41F /* ServantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServantModel.swift; sourceTree = "<group>"; };
 		71C570902033572400284040 /* ServantPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServantPhotoCell.swift; sourceTree = "<group>"; };
 		71F9942D202A0894009147E0 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		71F99431202EFED2009147E0 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				635756D42032998D0027909E /* CardInfoViewController.swift */,
 				71C570902033572400284040 /* ServantPhotoCell.swift */,
 				715109382047161200A7AE42 /* KeepSkillsCell.swift */,
+				7169E3AD2050450D0034F41F /* ServantModel.swift */,
 				6319F63B203EA7F2001BEE5A /* LayoutFormula.swift */,
 				636772A82040114B00AA048E /* FFRequestHandler.swift */,
 				6325AB6020295FD200D7672D /* Assets.xcassets */,
@@ -234,6 +237,7 @@
 				635756D52032998D0027909E /* CardInfoViewController.swift in Sources */,
 				71F9942E202A0894009147E0 /* CardViewController.swift in Sources */,
 				6319F63C203EA7F2001BEE5A /* LayoutFormula.swift in Sources */,
+				7169E3AE2050450D0034F41F /* ServantModel.swift in Sources */,
 				71C570912033572400284040 /* ServantPhotoCell.swift in Sources */,
 				636772A92040114B00AA048E /* FFRequestHandler.swift in Sources */,
 				6325AB5820295FD200D7672D /* AppDelegate.swift in Sources */,
