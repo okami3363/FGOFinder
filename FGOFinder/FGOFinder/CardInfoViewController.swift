@@ -13,7 +13,6 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     var backButton: UIButton!
     
     var collectionView: UICollectionView!
-    var servantPhotoDataSource: NSArray?
     
     var height: CGFloat!
     var width: CGFloat!
@@ -24,25 +23,20 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
 
     override func viewDidLoad() -> Void {
         super.viewDidLoad()
-        servantModel = ServantModel()
         setupUI()
         setupDataSource()
     }
     
-
     override func didReceiveMemoryWarning() -> Void {
         super.didReceiveMemoryWarning()
     }
     
+    //MARK: - Func
     func setupDataSource() -> Void {
-        servantPhotoDataSource = setupServantPhotoDataSource()
+        servantModel = ServantModel()
         collectionView.reloadData()
         
         performSelector(onMainThread: #selector(scrollToDefaultServantPhoto), with: nil, waitUntilDone: false)
-    }
-    
-    func setupServantPhotoDataSource() -> NSArray {
-        return [UIImage.init(named: "303200a")!, UIImage.init(named: "303200a")!, UIImage.init(named: "303200b")!, UIImage.init(named: "303200b")!]
     }
     
     @objc func scrollToDefaultServantPhoto() -> Void {
@@ -53,7 +47,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     }
     
     func setupUI() -> Void {
-        view.backgroundColor = UIColor.black
+        view.backgroundColor = UIColor.white
         
         backButton = UIButton.init(type: .custom)
         backButton.frame = CGRect (x: 0, y: 0, width: UIScreen.main.bounds.size.width/20, height: UIScreen.main.bounds.size.width/20)
@@ -73,7 +67,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         layout.itemSize = CGSize (width: width, height: height)
         
         collectionView = UICollectionView.init(frame: CGRect (x: UIScreen.main.bounds.size.width/20, y: 0, width: width, height: height), collectionViewLayout:layout)
-        collectionView.backgroundColor = UIColor.red
+        collectionView.backgroundColor = UIColor.clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = true
         collectionView.dataSource = self
@@ -81,7 +75,8 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         view.addSubview(collectionView)
         
         tableView = UITableView.init(frame: CGRect (x: collectionView.frame.origin.x+collectionView.frame.size.width+20, y: 0, width: UIScreen.main.bounds.width-(UIScreen.main.bounds.size.width/20)-(collectionView.frame.origin.x+collectionView.frame.size.width+20), height: height))
-        tableView.backgroundColor = UIColor.white
+        tableView.backgroundColor = UIColor.clear
+        tableView.allowsSelection = false
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(KeepSkillsCell.self, forCellReuseIdentifier: "Cell")
@@ -103,27 +98,28 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         
 //        let skillDescription: String! = servantModel!.keepSkillsArrry![indexPath.row]
         
-        cell.skillImageView.image = UIImage.init(named: "SkillIcon_403")
-//        cell.skillNumberLabel.text = "SKILL \(indexPath.row+1)"
-        cell.skillNameLabel.text = "秘められた大王冠 A"
-        cell.skillColdDownLabel.text = "冷卻8回合"
-        cell.skillWhenGetLabel.text = "初期"
+        
 //        cell.skillDescriptionLabel.text = skillDescription
         
         let keepSkillModel = servantModel.keepSkillsArrry![indexPath.row]
         var y = 0
         var i = 0
-        for skillDescription in keepSkillModel.keepSkillDescriptionArrry! {
+        for skillDescription in keepSkillModel.descriptionArrry! {
             let skillDescriptionLabel:UILabel = cell.skillDescriptionLabelArray[i]
             skillDescriptionLabel.text = skillDescription
             if i == 0 {
                 y = Int(skillDescriptionLabel.frame.origin.y)
             }
-            let descriptionSize: CGSize = keepSkillModel.keepSkillDescriptionSizeArray![i]
+            let descriptionSize: CGSize = keepSkillModel.descriptionSizeArray![i]
             skillDescriptionLabel.frame = CGRect (x: skillDescriptionLabel.frame.origin.x, y: CGFloat(y), width: descriptionSize.width, height: descriptionSize.height)
             y+=Int(descriptionSize.height)
             i+=1
         }
+        
+        cell.skillImageView.image = UIImage.init(named: keepSkillModel.iconURL)
+        cell.skillNameLabel.text = keepSkillModel.name
+        cell.skillColdDownLabel.text = keepSkillModel.coldDown
+        cell.skillWhenGetLabel.text = keepSkillModel.whenGet
         
         return cell
     }
@@ -131,37 +127,21 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     
     //MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-//        let skillDescription: String! = "對自身隨機賦予各種效果[Lv.]\n以機率賦予弱體無效狀態[Lv.](1回合)\n┗以機率賦予即死無效狀態[Lv.](1回合)\n┗以機率賦予強化解除耐性提升100%[Lv.](1回合)\n60%|62%|64%|66%|68%|70%|72%|74%|76%|78%|80%"
-//        let descriptionSize: CGSize = skillDescription.size(withAttributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)])
-        
-//        let descriptionSize: CGSize = servantModel!.keepSkillsDescriptionSizeArray![indexPath.row]
-        
-        var rowHeight = 0
-        
-//        var titleDescriptionHeight = 0
         let keepSkillModel = servantModel.keepSkillsArrry![indexPath.row]
-        
-//        for descriptionSize in keepSkillModel.keepSkillDescriptionSizeArray! {
-//            titleDescriptionHeight += Int(descriptionSize.height)
-//        }
-
-        
-        
-        rowHeight = rowHeight+10+50+10+Int(keepSkillModel.titleDescriptionHeight)
-        
+        var rowHeight = 0
+        rowHeight = rowHeight+10+50+8+Int(keepSkillModel.titleDescriptionHeight)+10
         return CGFloat(rowHeight)
     }
     
     //MARK: - UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return servantPhotoDataSource!.count
+        return servantModel.servantPhotoArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as?ServantPhotoCell
         
-        cell!.servantImageView.image = servantPhotoDataSource![indexPath.row] as?UIImage
+        cell!.servantImageView.image = servantModel.servantPhotoArray[indexPath.row]
         
         switch indexPath.row%2 {
         case 0:
