@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds);
         
         let navigationController = UINavigationController()
-        let cardViewController = CardViewController()
+        let cardViewController = CardsViewController()
         navigationController.viewControllers = [cardViewController]
         navigationController.navigationBar.isHidden = true
         

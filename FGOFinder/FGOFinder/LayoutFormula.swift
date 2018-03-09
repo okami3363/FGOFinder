@@ -21,5 +21,17 @@ class LayoutFormula: NSObject {
     func sizeOfStringAndFont(string: String, font: UIFont) -> CGSize {
         return string.size(withAttributes: [NSAttributedStringKey.font: font])
     }
-
+    
+    func landscapeAdditionalSafeAreaInsets() -> UIEdgeInsets {
+        var insets: UIEdgeInsets!
+        if UIDevice().userInterfaceIdiom == .phone {
+            switch UIScreen.main.nativeBounds.height {
+            case 2436:
+                insets = UIEdgeInsetsMake(0, 44, 21, 44)
+            default:
+                insets = UIEdgeInsetsMake(0, 0, 0, 0)
+            }
+        }
+        return insets
+    }
 }

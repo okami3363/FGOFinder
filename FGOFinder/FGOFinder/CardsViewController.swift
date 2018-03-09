@@ -13,7 +13,7 @@ enum ShowType {
     case craftEssence
 }
 
-class CardViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class CardsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     var collectionView: UICollectionView!
     var layout: UICollectionViewFlowLayout!
@@ -27,7 +27,6 @@ class CardViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     override func viewDidLoad() -> Void {
         super.viewDidLoad()
-        
         setupUI()
         setupDataSource()
     }
@@ -67,6 +66,8 @@ class CardViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func setupUI() -> Void {
         view.backgroundColor = UIColor.black
+        additionalSafeAreaInsets = LayoutFormula().landscapeAdditionalSafeAreaInsets()
+        print(additionalSafeAreaInsets)
         
         layout = UICollectionViewFlowLayout()
         let width = ((UIScreen.main.bounds.size.width-(2*(UIScreen.main.bounds.size.width/20)))-(10*7))/6
@@ -98,7 +99,7 @@ class CardViewController: UIViewController, UICollectionViewDataSource, UICollec
         actionBar.addSubview(craftEssence)
         
         collectionView = UICollectionView.init(frame: CGRect (x: actionBar.frame.origin.x, y: actionBar.frame.origin.y+actionBar.frame.size.height, width: actionBar.frame.size.width, height: UIScreen.main.bounds.size.height), collectionViewLayout:layout!)
-        collectionView.backgroundColor = UIColor.clear
+        collectionView.backgroundColor = UIColor.white
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(CardCell.self, forCellWithReuseIdentifier: "Cell")

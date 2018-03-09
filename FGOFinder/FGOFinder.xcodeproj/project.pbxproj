@@ -16,7 +16,7 @@
 		715109392047161200A7AE42 /* KeepSkillsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715109382047161200A7AE42 /* KeepSkillsCell.swift */; };
 		7169E3AE2050450D0034F41F /* ServantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7169E3AD2050450D0034F41F /* ServantModel.swift */; };
 		71C570912033572400284040 /* ServantPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C570902033572400284040 /* ServantPhotoCell.swift */; };
-		71F9942E202A0894009147E0 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F9942D202A0894009147E0 /* CardViewController.swift */; };
+		71F9942E202A0894009147E0 /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F9942D202A0894009147E0 /* CardsViewController.swift */; };
 		71F99432202EFED2009147E0 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F99431202EFED2009147E0 /* CardCell.swift */; };
 		B3FB7ECC10CF55EC728E0463 /* Pods_FGOFinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE285755413051F989926F1C /* Pods_FGOFinder.framework */; };
 /* End PBXBuildFile section */
@@ -33,7 +33,7 @@
 		715109382047161200A7AE42 /* KeepSkillsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepSkillsCell.swift; sourceTree = "<group>"; };
 		7169E3AD2050450D0034F41F /* ServantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServantModel.swift; sourceTree = "<group>"; };
 		71C570902033572400284040 /* ServantPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServantPhotoCell.swift; sourceTree = "<group>"; };
-		71F9942D202A0894009147E0 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		71F9942D202A0894009147E0 /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
 		71F99431202EFED2009147E0 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		98C1CF6550853B9D4F1AD93E /* Pods-FGOFinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FGOFinder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FGOFinder/Pods-FGOFinder.debug.xcconfig"; sourceTree = "<group>"; };
 		BE285755413051F989926F1C /* Pods_FGOFinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FGOFinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,7 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				6325AB5720295FD200D7672D /* AppDelegate.swift */,
-				71F9942D202A0894009147E0 /* CardViewController.swift */,
+				71F9942D202A0894009147E0 /* CardsViewController.swift */,
 				71F99431202EFED2009147E0 /* CardCell.swift */,
 				635756D42032998D0027909E /* CardInfoViewController.swift */,
 				71C570902033572400284040 /* ServantPhotoCell.swift */,
@@ -235,7 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				635756D52032998D0027909E /* CardInfoViewController.swift in Sources */,
-				71F9942E202A0894009147E0 /* CardViewController.swift in Sources */,
+				71F9942E202A0894009147E0 /* CardsViewController.swift in Sources */,
 				6319F63C203EA7F2001BEE5A /* LayoutFormula.swift in Sources */,
 				7169E3AE2050450D0034F41F /* ServantModel.swift in Sources */,
 				71C570912033572400284040 /* ServantPhotoCell.swift in Sources */,
@@ -308,7 +308,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -359,7 +359,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -375,6 +375,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P6VW4F8FQT;
 				INFOPLIST_FILE = FGOFinder/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.okami3363.FGOFinder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -391,6 +392,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P6VW4F8FQT;
 				INFOPLIST_FILE = FGOFinder/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.okami3363.FGOFinder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
