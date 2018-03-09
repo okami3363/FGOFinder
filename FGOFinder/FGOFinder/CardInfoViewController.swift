@@ -49,8 +49,10 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     func setupUI() -> Void {
         view.backgroundColor = UIColor.white
         
+        additionalSafeAreaInsets = LayoutFormula().landscapeAdditionalSafeAreaInsets()
+        
         backButton = UIButton.init(type: .custom)
-        backButton.frame = CGRect (x: 0, y: 0, width: UIScreen.main.bounds.size.width/20, height: UIScreen.main.bounds.size.width/20)
+        backButton.frame = CGRect (x: 0, y: 0, width: additionalSafeAreaInsets.left+15, height: additionalSafeAreaInsets.left)
         backButton.setTitle("<-", for: .normal)
         backButton.setTitleColor(UIColor.blue, for: .normal)
         backButton.layer.borderColor = UIColor.blue.cgColor
@@ -66,7 +68,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         layout.minimumLineSpacing = 0
         layout.itemSize = CGSize (width: width, height: height)
         
-        collectionView = UICollectionView.init(frame: CGRect (x: UIScreen.main.bounds.size.width/20, y: 0, width: width, height: height), collectionViewLayout:layout)
+        collectionView = UICollectionView.init(frame: CGRect (x: backButton.frame.origin.x+backButton.frame.size.width, y: 0, width: width, height: height), collectionViewLayout:layout)
         collectionView.backgroundColor = UIColor.clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = true
@@ -74,8 +76,9 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         collectionView.register(ServantPhotoCell.self, forCellWithReuseIdentifier: "Cell")
         view.addSubview(collectionView)
         
-        tableView = UITableView.init(frame: CGRect (x: collectionView.frame.origin.x+collectionView.frame.size.width+20, y: 0, width: UIScreen.main.bounds.width-(UIScreen.main.bounds.size.width/20)-(collectionView.frame.origin.x+collectionView.frame.size.width+20), height: height))
+        tableView = UITableView.init(frame: CGRect (x: collectionView.frame.origin.x+collectionView.frame.size.width, y: 0, width: UIScreen.main.bounds.width-(additionalSafeAreaInsets.left+additionalSafeAreaInsets.right)-collectionView.frame.size.width, height: height))
         tableView.backgroundColor = UIColor.clear
+        tableView.showsVerticalScrollIndicator = false
         tableView.allowsSelection = false
         tableView.dataSource = self
         tableView.delegate = self
@@ -96,23 +99,13 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         
         let cell: KeepSkillsCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! KeepSkillsCell
         
-//        let skillDescription: String! = servantModel!.keepSkillsArrry![indexPath.row]
-        
-        
-//        cell.skillDescriptionLabel.text = skillDescription
-        
         let keepSkillModel = servantModel.keepSkillsArrry![indexPath.row]
-        var y = 0
+        
         var i = 0
         for skillDescription in keepSkillModel.descriptionArrry! {
             let skillDescriptionLabel:UILabel = cell.skillDescriptionLabelArray[i]
+            skillDescriptionLabel.frame = keepSkillModel.descriptionSizeArray![i]
             skillDescriptionLabel.text = skillDescription
-            if i == 0 {
-                y = Int(skillDescriptionLabel.frame.origin.y)
-            }
-            let descriptionSize: CGSize = keepSkillModel.descriptionSizeArray![i]
-            skillDescriptionLabel.frame = CGRect (x: skillDescriptionLabel.frame.origin.x, y: CGFloat(y), width: descriptionSize.width, height: descriptionSize.height)
-            y+=Int(descriptionSize.height)
             i+=1
         }
         

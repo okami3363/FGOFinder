@@ -30,7 +30,7 @@ class CardsViewController: UIViewController, UICollectionViewDataSource, UIColle
         setupUI()
         setupDataSource()
     }
-    
+    //MARK: - Func
     override func didReceiveMemoryWarning() -> Void {
         super.didReceiveMemoryWarning()
     }
@@ -65,23 +65,17 @@ class CardsViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     func setupUI() -> Void {
-        view.backgroundColor = UIColor.black
+        view.backgroundColor = UIColor.white
+        
         additionalSafeAreaInsets = LayoutFormula().landscapeAdditionalSafeAreaInsets()
-        print(additionalSafeAreaInsets)
         
-        layout = UICollectionViewFlowLayout()
-        let width = ((UIScreen.main.bounds.size.width-(2*(UIScreen.main.bounds.size.width/20)))-(10*7))/6
-        layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 10
-        layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
-        layout.itemSize = CGSize (width: width, height: width)
         
-        actionBar = UIView(frame: CGRect(x: UIScreen.main.bounds.size.width/20, y: 0, width: UIScreen.main.bounds.size.width-(2*(UIScreen.main.bounds.size.width/20)), height: 40));
-        actionBar.backgroundColor = UIColor.white
+        actionBar = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width-(0), height: 40));
+        actionBar.backgroundColor = UIColor.lightGray
         view.addSubview(actionBar)
         
         servant = UIButton.init(type: .custom)
-        servant.frame = CGRect (x: 10, y: 0, width: 80, height: 40)
+        servant.frame = CGRect (x: additionalSafeAreaInsets.left+15, y: 0, width: 80, height: 40)
         servant.setTitle("Servant", for: .normal)
         servant.setTitleColor(UIColor.blue, for: .normal)
         servant.layer.borderColor = UIColor.blue.cgColor
@@ -98,8 +92,16 @@ class CardsViewController: UIViewController, UICollectionViewDataSource, UIColle
         craftEssence.addTarget(self, action: #selector(craftEssenceAction(sender:)), for: .touchUpInside)
         actionBar.addSubview(craftEssence)
         
-        collectionView = UICollectionView.init(frame: CGRect (x: actionBar.frame.origin.x, y: actionBar.frame.origin.y+actionBar.frame.size.height, width: actionBar.frame.size.width, height: UIScreen.main.bounds.size.height), collectionViewLayout:layout!)
-        collectionView.backgroundColor = UIColor.white
+        layout = UICollectionViewFlowLayout()
+        let width = ((UIScreen.main.bounds.size.width-(additionalSafeAreaInsets.left+additionalSafeAreaInsets.right))-(10*6))/7
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 10
+        layout.sectionInset = UIEdgeInsetsMake(10, additionalSafeAreaInsets.left, 10, additionalSafeAreaInsets.right);
+        layout.itemSize = CGSize (width: width, height: width)
+        
+        collectionView = UICollectionView.init(frame: CGRect (x: actionBar.frame.origin.x, y: actionBar.frame.origin.y+actionBar.frame.size.height, width: actionBar.frame.size.width, height: UIScreen.main.bounds.size.height-actionBar.frame.size.height), collectionViewLayout:layout!)
+        collectionView.backgroundColor = UIColor.clear
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(CardCell.self, forCellWithReuseIdentifier: "Cell")
