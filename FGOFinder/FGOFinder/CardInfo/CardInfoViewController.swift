@@ -17,9 +17,10 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     var height: CGFloat!
     var width: CGFloat!
     
-    var tableView:UITableView!
+    var tableView: UITableView!
     
-    var servantModel:ServantModel!
+    var servantModel: ServantModel!
+    var servantSkillDataSource: [Array<Any>]!
 
     override func viewDidLoad() -> Void {
         super.viewDidLoad()
@@ -34,6 +35,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     //MARK: - Func
     func setupDataSource() -> Void {
         servantModel = ServantModel()
+        servantSkillDataSource = [servantModel.keepSkillsArrry];
         collectionView.reloadData()
         
         performSelector(onMainThread: #selector(scrollToDefaultServantPhoto), with: nil, waitUntilDone: false)
@@ -76,7 +78,8 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         collectionView.register(ServantPhotoCell.self, forCellWithReuseIdentifier: "Cell")
         view.addSubview(collectionView)
         
-        tableView = UITableView.init(frame: CGRect (x: collectionView.frame.origin.x+collectionView.frame.size.width, y: 0, width: UIScreen.main.bounds.width-(additionalSafeAreaInsets.left+additionalSafeAreaInsets.right)-collectionView.frame.size.width, height: height))
+//        tableView = UITableView.init(frame: CGRect (x: collectionView.frame.origin.x+collectionView.frame.size.width, y: 0, width: UIScreen.main.bounds.width-(additionalSafeAreaInsets.left+additionalSafeAreaInsets.right)-collectionView.frame.size.width, height: height))
+        tableView = UITableView.init(frame: CGRect (x: collectionView.frame.origin.x+collectionView.frame.size.width, y: 0, width: UIScreen.main.bounds.width-(additionalSafeAreaInsets.left+additionalSafeAreaInsets.right)-collectionView.frame.size.width, height: height), style: .grouped)
         tableView.backgroundColor = UIColor.clear
         tableView.showsVerticalScrollIndicator = false
         tableView.allowsSelection = false
@@ -91,38 +94,51 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     }
     
     //MARK: - UITableViewDataSource
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return servantSkillDataSource.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return servantModel.keepSkillsArrry!.count
+        return servantSkillDataSource[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell: KeepSkillsCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! KeepSkillsCell
-        
-        let keepSkillModel = servantModel.keepSkillsArrry![indexPath.row]
-        
-        var i = 0
-        for skillDescription in keepSkillModel.descriptionArrry! {
-            let skillDescriptionLabel:UILabel = cell.skillDescriptionLabelArray[i]
-            skillDescriptionLabel.frame = keepSkillModel.descriptionSizeArray![i]
-            skillDescriptionLabel.text = skillDescription
-            i+=1
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! KeepSkillsCell
+        if indexPath.section == 0 {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! KeepSkillsCell
+//            let keepSkillModel = servantModel.keepSkillsArrry![indexPath.row]
+            let keepSkillsArrry = servantSkillDataSource[indexPath.section]
+            let keepSkillModel: KeepSkillModel = keepSkillsArrry[indexPath.row] as! KeepSkillModel
+            
+            var i = 0
+            for skillDescription in keepSkillModel.descriptionArrry! {
+                let skillDescriptionLabel:UILabel = cell.skillDescriptionLabelArray[i]
+                skillDescriptionLabel.frame = keepSkillModel.descriptionSizeArray![i]
+                skillDescriptionLabel.text = skillDescription
+                i+=1
+            }
+            
+            cell.skillImageView.image = UIImage.init(named: keepSkillModel.iconURL)
+            cell.skillNameLabel.text = keepSkillModel.name
+            cell.skillColdDownLabel.text = keepSkillModel.coldDown
+            cell.skillWhenGetLabel.text = keepSkillModel.whenGet
         }
         
-        cell.skillImageView.image = UIImage.init(named: keepSkillModel.iconURL)
-        cell.skillNameLabel.text = keepSkillModel.name
-        cell.skillColdDownLabel.text = keepSkillModel.coldDown
-        cell.skillWhenGetLabel.text = keepSkillModel.whenGet
+        
         
         return cell
     }
     
-    
     //MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let keepSkillModel = servantModel.keepSkillsArrry![indexPath.row]
         var rowHeight = 0
-        rowHeight = rowHeight+10+50+8+Int(keepSkillModel.titleDescriptionHeight)+10
+        if indexPath.section == 0 {
+            let keepSkillsArrry = servantSkillDataSource[indexPath.section]
+            let keepSkillModel: KeepSkillModel = keepSkillsArrry[indexPath.row] as! KeepSkillModel
+            rowHeight = rowHeight+10+50+8+Int(keepSkillModel.titleDescriptionHeight)+10
+        }
+        
         return CGFloat(rowHeight)
     }
     

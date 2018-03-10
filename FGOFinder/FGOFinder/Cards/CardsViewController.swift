@@ -22,7 +22,7 @@ class CardsViewController: UIViewController, UICollectionViewDataSource, UIColle
     var servant: UIButton!
     var craftEssence: UIButton!
     
-    var dataSource: NSArray?
+    var dataSource: [Any]?
     var showType: ShowType = ShowType.servant
     
     override func viewDidLoad() -> Void {
@@ -45,12 +45,12 @@ class CardsViewController: UIViewController, UICollectionViewDataSource, UIColle
         collectionView.reloadData()
     }
     
-    func setupServantDataSource() -> NSArray {
-        return [UIImage](repeating:UIImage.init(named: "3032000")!, count: 40) as NSArray
+    func setupServantDataSource() -> [UIImage] {
+        return [UIImage](repeating:UIImage.init(named: "3032000")!, count: 40)
     }
     
-    func setupCraftEssenceDataSource() -> NSArray {
-        return [UIImage](repeating:UIImage.init(named: "9302590")!, count: 40) as NSArray
+    func setupCraftEssenceDataSource() -> [UIImage] {
+        return [UIImage](repeating:UIImage.init(named: "9302590")!, count: 40)
     }
     
     @objc func servantAction(sender: UIButton) -> Void {
@@ -115,7 +115,7 @@ class CardsViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as?CardCell
-        cell!.cardImageView.image = dataSource![indexPath.row] as?UIImage
+        cell!.cardImageView.image = dataSource![indexPath.row] as? UIImage
         
         return cell!
     }
