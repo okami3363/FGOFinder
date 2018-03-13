@@ -35,7 +35,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     //MARK: - Func
     func setupDataSource() -> Void {
         servantModel = ServantModel()
-        servantSkillDataSource = [servantModel.keepSkillsArrry];
+        servantSkillDataSource = [servantModel.keepSkillsArrry, servantModel.careerSkillsArrry];
         collectionView.reloadData()
         
         performSelector(onMainThread: #selector(scrollToDefaultServantPhoto), with: nil, waitUntilDone: false)
@@ -98,6 +98,10 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         return servantSkillDataSource.count
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return servantSkillDataSource[section].count
     }
@@ -105,7 +109,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! KeepSkillsCell
-        if indexPath.section == 0 {
+        if indexPath.section == 0 || indexPath.section == 1 {
 //            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! KeepSkillsCell
 //            let keepSkillModel = servantModel.keepSkillsArrry![indexPath.row]
             let keepSkillsArrry = servantSkillDataSource[indexPath.section]
@@ -115,6 +119,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
             for skillDescription in keepSkillModel.descriptionArrry! {
                 let skillDescriptionLabel:UILabel = cell.skillDescriptionLabelArray[i]
                 skillDescriptionLabel.frame = keepSkillModel.descriptionSizeArray![i]
+                skillDescriptionLabel.text = ""
                 skillDescriptionLabel.text = skillDescription
                 i+=1
             }
@@ -127,13 +132,14 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         
         
         
+        
         return cell
     }
     
     //MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var rowHeight = 0
-        if indexPath.section == 0 {
+        if indexPath.section == 0 || indexPath.section == 1 {
             let keepSkillsArrry = servantSkillDataSource[indexPath.section]
             let keepSkillModel: KeepSkillModel = keepSkillsArrry[indexPath.row] as! KeepSkillModel
             rowHeight = rowHeight+10+50+8+Int(keepSkillModel.titleDescriptionHeight)+10
