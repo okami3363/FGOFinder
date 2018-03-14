@@ -62,7 +62,6 @@ class ServantModel: NSObject {
 }
 
 class CareerSkillModel: KeepSkillModel {
-
     
 }
 

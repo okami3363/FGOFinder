@@ -10,14 +10,14 @@
 		6325AB5820295FD200D7672D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6325AB5720295FD200D7672D /* AppDelegate.swift */; };
 		6325AB6120295FD200D7672D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6325AB6020295FD200D7672D /* Assets.xcassets */; };
 		6325AB6420295FD200D7672D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6325AB6220295FD200D7672D /* LaunchScreen.storyboard */; };
-		71000EAB2054500F00C2A6D1 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71000EA12054500E00C2A6D1 /* CardCell.swift */; };
-		71000EAC2054500F00C2A6D1 /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71000EA22054500E00C2A6D1 /* CardsViewController.swift */; };
+		63680E44205930FB0002933F /* ServantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63680E3B205930FB0002933F /* ServantModel.swift */; };
+		63680E45205930FB0002933F /* CardInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63680E3D205930FB0002933F /* CardInfoViewController.swift */; };
+		63680E46205930FB0002933F /* ServantPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63680E3E205930FB0002933F /* ServantPhotoCell.swift */; };
+		63680E47205930FB0002933F /* KeepSkillsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63680E3F205930FB0002933F /* KeepSkillsCell.swift */; };
+		63680E48205930FB0002933F /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63680E42205930FB0002933F /* CardCell.swift */; };
+		63680E49205930FB0002933F /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63680E43205930FB0002933F /* CardsViewController.swift */; };
 		71000EAD2054500F00C2A6D1 /* LayoutFormula.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71000EA42054500E00C2A6D1 /* LayoutFormula.swift */; };
 		71000EAE2054500F00C2A6D1 /* FFRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71000EA52054500E00C2A6D1 /* FFRequestHandler.swift */; };
-		71000EAF2054500F00C2A6D1 /* CardInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71000EA72054500F00C2A6D1 /* CardInfoViewController.swift */; };
-		71000EB02054500F00C2A6D1 /* ServantPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71000EA82054500F00C2A6D1 /* ServantPhotoCell.swift */; };
-		71000EB12054500F00C2A6D1 /* ServantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71000EA92054500F00C2A6D1 /* ServantModel.swift */; };
-		71000EB22054500F00C2A6D1 /* KeepSkillsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71000EAA2054500F00C2A6D1 /* KeepSkillsCell.swift */; };
 		B3FB7ECC10CF55EC728E0463 /* Pods_FGOFinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE285755413051F989926F1C /* Pods_FGOFinder.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,14 +27,14 @@
 		6325AB6020295FD200D7672D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6325AB6320295FD200D7672D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6325AB6520295FD200D7672D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		71000EA12054500E00C2A6D1 /* CardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
-		71000EA22054500E00C2A6D1 /* CardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
+		63680E3B205930FB0002933F /* ServantModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServantModel.swift; sourceTree = "<group>"; };
+		63680E3D205930FB0002933F /* CardInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardInfoViewController.swift; sourceTree = "<group>"; };
+		63680E3E205930FB0002933F /* ServantPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServantPhotoCell.swift; sourceTree = "<group>"; };
+		63680E3F205930FB0002933F /* KeepSkillsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeepSkillsCell.swift; sourceTree = "<group>"; };
+		63680E42205930FB0002933F /* CardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
+		63680E43205930FB0002933F /* CardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
 		71000EA42054500E00C2A6D1 /* LayoutFormula.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutFormula.swift; sourceTree = "<group>"; };
 		71000EA52054500E00C2A6D1 /* FFRequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFRequestHandler.swift; sourceTree = "<group>"; };
-		71000EA72054500F00C2A6D1 /* CardInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardInfoViewController.swift; sourceTree = "<group>"; };
-		71000EA82054500F00C2A6D1 /* ServantPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServantPhotoCell.swift; sourceTree = "<group>"; };
-		71000EA92054500F00C2A6D1 /* ServantModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServantModel.swift; sourceTree = "<group>"; };
-		71000EAA2054500F00C2A6D1 /* KeepSkillsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeepSkillsCell.swift; sourceTree = "<group>"; };
 		98C1CF6550853B9D4F1AD93E /* Pods-FGOFinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FGOFinder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FGOFinder/Pods-FGOFinder.debug.xcconfig"; sourceTree = "<group>"; };
 		BE285755413051F989926F1C /* Pods_FGOFinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FGOFinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3D820DE3759E1CE141145D8 /* Pods-FGOFinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FGOFinder.release.xcconfig"; path = "Pods/Target Support Files/Pods-FGOFinder/Pods-FGOFinder.release.xcconfig"; sourceTree = "<group>"; };
@@ -82,8 +82,8 @@
 		6325AB5620295FD200D7672D /* FGOFinder */ = {
 			isa = PBXGroup;
 			children = (
-				71000EA02054500E00C2A6D1 /* Cards */,
-				71000EA62054500F00C2A6D1 /* CardInfo */,
+				63680E39205930FB0002933F /* CardInfo */,
+				63680E40205930FB0002933F /* Cards */,
 				71000EA32054500E00C2A6D1 /* Utility */,
 				6325AB5720295FD200D7672D /* AppDelegate.swift */,
 				6325AB6020295FD200D7672D /* Assets.xcassets */,
@@ -93,13 +93,48 @@
 			path = FGOFinder;
 			sourceTree = "<group>";
 		};
-		71000EA02054500E00C2A6D1 /* Cards */ = {
+		63680E39205930FB0002933F /* CardInfo */ = {
 			isa = PBXGroup;
 			children = (
-				71000EA12054500E00C2A6D1 /* CardCell.swift */,
-				71000EA22054500E00C2A6D1 /* CardsViewController.swift */,
+				63680E3A205930FB0002933F /* Model */,
+				63680E3C205930FB0002933F /* View */,
+			);
+			path = CardInfo;
+			sourceTree = "<group>";
+		};
+		63680E3A205930FB0002933F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				63680E3B205930FB0002933F /* ServantModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		63680E3C205930FB0002933F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				63680E3D205930FB0002933F /* CardInfoViewController.swift */,
+				63680E3E205930FB0002933F /* ServantPhotoCell.swift */,
+				63680E3F205930FB0002933F /* KeepSkillsCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		63680E40205930FB0002933F /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				63680E41205930FB0002933F /* View */,
 			);
 			path = Cards;
+			sourceTree = "<group>";
+		};
+		63680E41205930FB0002933F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				63680E42205930FB0002933F /* CardCell.swift */,
+				63680E43205930FB0002933F /* CardsViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		71000EA32054500E00C2A6D1 /* Utility */ = {
@@ -109,17 +144,6 @@
 				71000EA52054500E00C2A6D1 /* FFRequestHandler.swift */,
 			);
 			path = Utility;
-			sourceTree = "<group>";
-		};
-		71000EA62054500F00C2A6D1 /* CardInfo */ = {
-			isa = PBXGroup;
-			children = (
-				71000EA72054500F00C2A6D1 /* CardInfoViewController.swift */,
-				71000EA82054500F00C2A6D1 /* ServantPhotoCell.swift */,
-				71000EA92054500F00C2A6D1 /* ServantModel.swift */,
-				71000EAA2054500F00C2A6D1 /* KeepSkillsCell.swift */,
-			);
-			path = CardInfo;
 			sourceTree = "<group>";
 		};
 		BF4A8DC359097BE6543EB7AF /* Frameworks */ = {
@@ -259,14 +283,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6325AB5820295FD200D7672D /* AppDelegate.swift in Sources */,
-				71000EB12054500F00C2A6D1 /* ServantModel.swift in Sources */,
+				63680E45205930FB0002933F /* CardInfoViewController.swift in Sources */,
+				63680E49205930FB0002933F /* CardsViewController.swift in Sources */,
+				63680E47205930FB0002933F /* KeepSkillsCell.swift in Sources */,
+				63680E48205930FB0002933F /* CardCell.swift in Sources */,
+				63680E44205930FB0002933F /* ServantModel.swift in Sources */,
 				71000EAE2054500F00C2A6D1 /* FFRequestHandler.swift in Sources */,
-				71000EAF2054500F00C2A6D1 /* CardInfoViewController.swift in Sources */,
-				71000EB22054500F00C2A6D1 /* KeepSkillsCell.swift in Sources */,
-				71000EB02054500F00C2A6D1 /* ServantPhotoCell.swift in Sources */,
-				71000EAB2054500F00C2A6D1 /* CardCell.swift in Sources */,
+				63680E46205930FB0002933F /* ServantPhotoCell.swift in Sources */,
 				71000EAD2054500F00C2A6D1 /* LayoutFormula.swift in Sources */,
-				71000EAC2054500F00C2A6D1 /* CardsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
