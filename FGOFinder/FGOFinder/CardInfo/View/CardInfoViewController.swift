@@ -44,8 +44,6 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     @objc func scrollToDefaultServantPhoto() -> Void {
         let rect = CGRect (x: width*3, y: 0, width: width, height: height)
         self.collectionView.scrollRectToVisible(rect, animated: false)
-        
-//        self.collectionView.scrollToItem(at: IndexPath.init(row: servantPhotoDataSource!.count-1, section: 0), at: .left, animated: false)
     }
     
     func setupUI() -> Void {
@@ -75,17 +73,17 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = true
         collectionView.dataSource = self
-        collectionView.register(ServantPhotoCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView.register(ServantPhotoCell.self, forCellWithReuseIdentifier: NSStringFromClass(ServantPhotoCell.self))
         view.addSubview(collectionView)
         
-//        tableView = UITableView.init(frame: CGRect (x: collectionView.frame.origin.x+collectionView.frame.size.width, y: 0, width: UIScreen.main.bounds.width-(additionalSafeAreaInsets.left+additionalSafeAreaInsets.right)-collectionView.frame.size.width, height: height))
         tableView = UITableView.init(frame: CGRect (x: collectionView.frame.origin.x+collectionView.frame.size.width, y: 0, width: UIScreen.main.bounds.width-(additionalSafeAreaInsets.left+additionalSafeAreaInsets.right)-collectionView.frame.size.width, height: height), style: .grouped)
         tableView.backgroundColor = UIColor.clear
         tableView.showsVerticalScrollIndicator = false
         tableView.allowsSelection = false
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(KeepSkillsCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(KeepSkillsCell.self, forCellReuseIdentifier: NSStringFromClass(KeepSkillsCell.self))
+        tableView.register(CareerSkillsCell.self, forCellReuseIdentifier: NSStringFromClass(CareerSkillsCell.self))
         view.addSubview(tableView)
     }
     
@@ -108,7 +106,16 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! KeepSkillsCell
+        var cellIdentifier = ""
+        switch indexPath.section {
+        case 0:
+            cellIdentifier = NSStringFromClass(KeepSkillsCell.self)
+        case 1:
+            cellIdentifier = NSStringFromClass(CareerSkillsCell.self)
+        default: break
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! KeepSkillsCell
         if indexPath.section == 0 || indexPath.section == 1 {
 //            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! KeepSkillsCell
 //            let keepSkillModel = servantModel.keepSkillsArrry![indexPath.row]
@@ -129,9 +136,6 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
             cell.skillColdDownLabel.text = keepSkillModel.coldDown
             cell.skillWhenGetLabel.text = keepSkillModel.whenGet
         }
-        
-        
-        
         
         return cell
     }
@@ -154,7 +158,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as?ServantPhotoCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(ServantPhotoCell.self), for: indexPath) as?ServantPhotoCell
         
         cell!.servantImageView.image = servantModel.servantPhotoArray[indexPath.row]
         
