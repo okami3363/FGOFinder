@@ -13,6 +13,7 @@ class ServantModel: NSObject {
     var servantPhotoArray: [UIImage]!
     var keepSkillsArrry: [KeepSkillModel]!
     var careerSkillsArrry: [CareerSkillModel]!
+    var npArray:[NoblePhantasmsModel]!
     
     override init() {
         super.init()
@@ -58,7 +59,17 @@ class ServantModel: NSObject {
         careerSkill3.descriptionArrry = ["對自身賦予傷害加成狀態：225\n┗弱體耐性提升：22.5%"]
         
         careerSkillsArrry = [careerSkill1, careerSkill2, careerSkill3]
+        
+        let np = NoblePhantasmsModel()
+        np.iconURL = "icon_cmdCard_2"
+        np.name = "霊峰踏抱く冥府の鞴"
+        np.descriptionArrry = ["自身的Buster卡性能提升(1回合)\n┗< OverCharge的話效果提升>\n    [10%|20%|30%|40%|50%]", "┗對敵全體的強力攻擊[Lv.]\n    [300%|400%|450%|475%|500%]", "┗〔冥界加護〕狀態的我方全體的攻擊力提升(3回合)\n    [20%]"]
+        npArray = [np]
     }
+}
+
+class NoblePhantasmsModel: KeepSkillModel {
+    
 }
 
 class CareerSkillModel: KeepSkillModel {
