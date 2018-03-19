@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate {
     
@@ -14,10 +15,14 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     
     var collectionView: UICollectionView!
     
-    var height: CGFloat!
-    var width: CGFloat!
+    var servantPhotoHeight: CGFloat!
+    var servantPhotoWidth: CGFloat!
     
     var tableView: UITableView!
+    
+    var nameLabel: UILabel!
+    var skillButton: UIButton!
+    var materialButton: UIButton!
     
     var servantModel: ServantModel!
     var servantSkillDataSource: [Array<Any>]!
@@ -36,13 +41,14 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     func setupDataSource() -> Void {
         servantModel = ServantModel()
         servantSkillDataSource = [servantModel.keepSkillsArrry, servantModel.careerSkillsArrry, servantModel.npArray];
-        collectionView.reloadData()
+        nameLabel.text = "艾蕾修卡"
+//        collectionView.reloadData()
         
         performSelector(onMainThread: #selector(scrollToDefaultServantPhoto), with: nil, waitUntilDone: false)
     }
     
     @objc func scrollToDefaultServantPhoto() -> Void {
-        let rect = CGRect (x: width*3, y: 0, width: width, height: height)
+        let rect = CGRect (x: servantPhotoWidth*3, y: 0, width: servantPhotoWidth, height: servantPhotoHeight)
         self.collectionView.scrollRectToVisible(rect, animated: false)
     }
     
@@ -53,22 +59,22 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         
         backButton = UIButton.init(type: .custom)
         backButton.frame = CGRect (x: 0, y: 0, width: additionalSafeAreaInsets.left+15, height: additionalSafeAreaInsets.left)
-        backButton.setTitle("<-", for: .normal)
-        backButton.setTitleColor(UIColor.blue, for: .normal)
-        backButton.layer.borderColor = UIColor.blue.cgColor
-        backButton.layer.borderWidth = 1
+        backButton.setTitle("<", for: .normal)
+        backButton.setTitleColor(UIColor.black, for: .normal)
+//        backButton.layer.borderColor = UIColor.blue.cgColor
+//        backButton.layer.borderWidth = 1
         backButton.addTarget(self, action: #selector(backAction(sender:)), for: .touchUpInside)
         view.addSubview(backButton)
         
-        width = LayoutFormula().servantPhotoSize().width
-        height = LayoutFormula().servantPhotoSize().height
+        servantPhotoWidth = LayoutFormula().servantPhotoSize().width
+        servantPhotoHeight = LayoutFormula().servantPhotoSize().height
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
-        layout.itemSize = CGSize (width: width, height: height)
+        layout.itemSize = CGSize (width: servantPhotoWidth, height: servantPhotoHeight)
         
-        collectionView = UICollectionView.init(frame: CGRect (x: backButton.frame.origin.x+backButton.frame.size.width, y: 0, width: width, height: height), collectionViewLayout:layout)
+        collectionView = UICollectionView.init(frame: CGRect (x: backButton.frame.origin.x+backButton.frame.size.width, y: 0, width: servantPhotoWidth, height: servantPhotoHeight), collectionViewLayout:layout)
         collectionView.backgroundColor = UIColor.clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = true
@@ -76,7 +82,32 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         collectionView.register(ServantPhotoCell.self, forCellWithReuseIdentifier: NSStringFromClass(ServantPhotoCell.self))
         view.addSubview(collectionView)
         
-        tableView = UITableView.init(frame: CGRect (x: collectionView.frame.origin.x+collectionView.frame.size.width, y: 0, width: UIScreen.main.bounds.width-(additionalSafeAreaInsets.left+additionalSafeAreaInsets.right)-collectionView.frame.size.width, height: height), style: .grouped)
+        nameLabel = UILabel.init(frame: CGRect (x: collectionView.frame.origin.x+collectionView.frame.size.width, y: 0, width: UIScreen.main.bounds.size.width-(collectionView.frame.origin.x+collectionView.frame.size.width)-additionalSafeAreaInsets.right, height: additionalSafeAreaInsets.left))
+//        nameLabel.backgroundColor = UIColor.blue
+        nameLabel.numberOfLines = 2
+        nameLabel.adjustsFontSizeToFitWidth = true
+        nameLabel.textAlignment = .center
+        view.addSubview(nameLabel)
+        
+        var actionButtonWidth = (UIScreen.main.bounds.size.width-(collectionView.frame.origin.x+collectionView.frame.size.width)-(10*3))/2
+        actionButtonWidth = ceil(actionButtonWidth)
+        skillButton = UIButton.init(type: .custom)
+        skillButton.frame = CGRect (x: nameLabel.frame.origin.x+10, y: nameLabel.frame.origin.y+nameLabel.frame.size.height, width: actionButtonWidth, height: 44)
+        skillButton.setTitle("技能寶具", for: .normal)
+        skillButton.setTitleColor(UIColor.black, for: .normal)
+        skillButton.layer.borderWidth = 1
+        skillButton.layer.borderColor = UIColor.black.cgColor
+        view.addSubview(skillButton)
+        
+        materialButton = UIButton.init(type: .custom)
+        materialButton.frame = CGRect (x: skillButton.frame.origin.x+skillButton.frame.size.width+10, y: skillButton.frame.origin.y, width: skillButton.frame.size.width, height: skillButton.frame.size.height)
+        materialButton.setTitle("強化素材", for: .normal)
+        materialButton.setTitleColor(UIColor.black, for: .normal)
+        materialButton.layer.borderWidth = 1
+        materialButton.layer.borderColor = UIColor.black.cgColor
+        view.addSubview(materialButton)
+        
+        tableView = UITableView.init(frame: CGRect (x: collectionView.frame.origin.x+collectionView.frame.size.width, y: skillButton.frame.origin.y+skillButton.frame.size.height, width: UIScreen.main.bounds.width-(additionalSafeAreaInsets.left+additionalSafeAreaInsets.right)-collectionView.frame.size.width, height: servantPhotoHeight-nameLabel.frame.size.height-skillButton.frame.size.height), style: .grouped)
         tableView.backgroundColor = UIColor.clear
         tableView.showsVerticalScrollIndicator = false
         tableView.allowsSelection = false
@@ -134,7 +165,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
                 i+=1
             }
             
-            cell.skillImageView.image = UIImage.init(named: keepSkillModel.iconURL)
+            cell.skillImageView.kf.setImage(with: URL(string: keepSkillModel.iconURL))
             cell.skillNameLabel.text = keepSkillModel.name
             cell.skillColdDownLabel.text = keepSkillModel.coldDown
             cell.skillWhenGetLabel.text = keepSkillModel.whenGet
@@ -157,13 +188,14 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     
     //MARK: - UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return servantModel.servantPhotoArray.count
+        return servantModel.photosArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(ServantPhotoCell.self), for: indexPath) as?ServantPhotoCell
         
-        cell!.servantImageView.image = servantModel.servantPhotoArray[indexPath.row]
+        let urlString = servantModel.photosArray[indexPath.row]
+        cell!.servantImageView.kf.setImage(with: URL(string: urlString))
         
         switch indexPath.row%2 {
         case 0:

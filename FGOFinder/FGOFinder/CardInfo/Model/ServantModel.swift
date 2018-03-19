@@ -10,31 +10,38 @@ import UIKit
 
 class ServantModel: NSObject {
     
-    var servantPhotoArray: [UIImage]!
+    var iconURL: String!
+    
+    var photosArray: [String]!
     var keepSkillsArrry: [KeepSkillModel]!
     var careerSkillsArrry: [CareerSkillModel]!
     var npArray:[NoblePhantasmsModel]!
     
     override init() {
         super.init()
-        servantPhotoArray = [UIImage.init(named: "303200a")!, UIImage.init(named: "303200a")!, UIImage.init(named: "303200b")!, UIImage.init(named: "303200b")!]
+        iconURL = "https://kazemai.github.io/fgo-vz/common/images/icon/faces/3032000.png"
+        
+        photosArray = ["https://kazemai.github.io/fgo-vz/common/images/CharaGraph/303200a.png",
+                             "https://kazemai.github.io/fgo-vz/common/images/CharaGraph/303200a.png",
+                             "https://kazemai.github.io/fgo-vz/common/images/CharaGraph/303200b.png",
+                             "https://kazemai.github.io/fgo-vz/common/images/CharaGraph/303200b.png"]
         
         let keepSkill1 = KeepSkillModel()
-        keepSkill1.iconURL = "SkillIcon_403"
+        keepSkill1.iconURL = "https://kazemai.github.io/fgo-vz/common/images/SkillIcon/SkillIcon_403.png"
         keepSkill1.name = "秘められた大王冠 A"
         keepSkill1.coldDown = "冷卻8回合"
         keepSkill1.whenGet = "初期"
         keepSkill1.descriptionArrry = ["對自身隨機賦予各種效果[Lv.]\n以機率賦予弱體無效狀態[Lv.](1回合)\n┗以機率賦予即死無效狀態[Lv.](1回合)\n┗以機率賦予強化解除耐性提升100%[Lv.](1回合)\n    [60%|62%|64%|66%|68%|70%|72%|74%|76%|78%|80%]", "┗對自身賦予無敵狀態(1回合)",]
         
         let keepSkill2 = KeepSkillModel()
-        keepSkill2.iconURL = "SkillIcon_306"
+        keepSkill2.iconURL = "https://kazemai.github.io/fgo-vz/common/images/SkillIcon/SkillIcon_306.png"
         keepSkill2.name = "魔力放出（檻） A+"
         keepSkill2.coldDown = "冷卻8回合"
         keepSkill2.whenGet = "靈基再臨第1階段"
         keepSkill2.descriptionArrry = ["自身的Buster卡性能提升[Lv.](1回合)\n    [30%|32%|34%|36%|38%|40%|42%|44%|46%|48%|50%]", "┗NP增加[Lv.]\n    [30%|32%|34%|36%|38%|40%|42%|44%|46%|48%|50%]",]
         
         let keepSkill3 = KeepSkillModel()
-        keepSkill3.iconURL = "SkillIcon_1004"
+        keepSkill3.iconURL = "https://kazemai.github.io/fgo-vz/common/images/SkillIcon/SkillIcon_1004.png"
         keepSkill3.name = "冥界の護り EX"
         keepSkill3.coldDown = "冷卻8回合"
         keepSkill3.whenGet = "靈基再臨第3階段"
@@ -44,24 +51,24 @@ class ServantModel: NSObject {
         keepSkillsArrry = [keepSkill1, keepSkill2, keepSkill3]
         
         let careerSkill1 = CareerSkillModel()
-        careerSkill1.iconURL = "SkillIcon_100"
+        careerSkill1.iconURL = "https://kazemai.github.io/fgo-vz/common/images/SkillIcon/SkillIcon_100.png"
         careerSkill1.name = "対魔力 D"
         careerSkill1.descriptionArrry = ["自身的弱體耐性稍微提升：12.5%"]
         
         let careerSkill2 = CareerSkillModel()
-        careerSkill2.iconURL = "SkillIcon_104"
+        careerSkill2.iconURL = "https://kazemai.github.io/fgo-vz/common/images/SkillIcon/SkillIcon_104.png"
         careerSkill2.name = "陣地作成 A+"
         careerSkill2.descriptionArrry = ["自身的Arts卡性能提升：11%"]
         
         let careerSkill3 = CareerSkillModel()
-        careerSkill3.iconURL = "SkillIcon_301"
+        careerSkill3.iconURL = "https://kazemai.github.io/fgo-vz/common/images/SkillIcon/SkillIcon_301.png"
         careerSkill3.name = "女神の神核 B"
         careerSkill3.descriptionArrry = ["對自身賦予傷害加成狀態：225\n┗弱體耐性提升：22.5%"]
         
         careerSkillsArrry = [careerSkill1, careerSkill2, careerSkill3]
         
         let np = NoblePhantasmsModel()
-        np.iconURL = "icon_cmdCard_2"
+        np.iconURL = "https://kazemai.github.io/fgo-vz/common/images/icon/cmdCard/icon_cmdCard_2.png"
         np.name = "霊峰踏抱く冥府の鞴"
         np.descriptionArrry = ["自身的Buster卡性能提升(1回合)\n┗< OverCharge的話效果提升>\n    [10%|20%|30%|40%|50%]", "┗對敵全體的強力攻擊[Lv.]\n    [300%|400%|450%|475%|500%]", "┗〔冥界加護〕狀態的我方全體的攻擊力提升(3回合)\n    [20%]"]
         npArray = [np]

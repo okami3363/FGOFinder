@@ -22,7 +22,7 @@ class CardsViewController: UIViewController, UICollectionViewDataSource, UIColle
     var servant: UIButton!
     var craftEssence: UIButton!
     
-    var dataSource: [Any]?
+    var dataSource: [ServantModel]?
     var showType: ShowType = ShowType.servant
     
     override func viewDidLoad() -> Void {
@@ -37,24 +37,24 @@ class CardsViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     func setupDataSource() -> Void {
         
-        FFRequestHandler().responseJSON(url: "https://fgo-vz.azurewebsites.net/Servant/") { (dataResponse) in
-            print(dataResponse)
-        }
+//        FFRequestHandler().responseJSON(url: "https://fgo-vz.azurewebsites.net/Servant/") { (dataResponse) in
+//            print(dataResponse)
+//        }
         
-        dataSource = (showType == ShowType.servant ? self.setupServantDataSource() :self.setupCraftEssenceDataSource())
+        dataSource = (showType == ShowType.servant ? self.setupServantDataSource() : self.setupCraftEssenceDataSource())
         collectionView.reloadData()
     }
     
-    func setupServantDataSource() -> [UIImage] {
-        return [UIImage](repeating:UIImage.init(named: "3032000")!, count: 40)
+    
+    func setupServantDataSource() -> [ServantModel] {
+        return [ServantModel](repeating:ServantModel(), count: 40)
     }
     
-    func setupCraftEssenceDataSource() -> [UIImage] {
-        return [UIImage](repeating:UIImage.init(named: "9302590")!, count: 40)
+    func setupCraftEssenceDataSource() -> [ServantModel] {
+        return [ServantModel](repeating:ServantModel(), count: 40)
     }
     
     @objc func servantAction(sender: UIButton) -> Void {
-        print(sender)
         showType = ShowType.servant
         setupDataSource()
     }
@@ -69,7 +69,6 @@ class CardsViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         additionalSafeAreaInsets = LayoutFormula().landscapeAdditionalSafeAreaInsets()
         
-        
         actionBar = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width-(0), height: 40));
         actionBar.backgroundColor = UIColor.lightGray
         view.addSubview(actionBar)
@@ -77,8 +76,8 @@ class CardsViewController: UIViewController, UICollectionViewDataSource, UIColle
         servant = UIButton.init(type: .custom)
         servant.frame = CGRect (x: additionalSafeAreaInsets.left+15, y: 0, width: 80, height: 40)
         servant.setTitle("Servant", for: .normal)
-        servant.setTitleColor(UIColor.blue, for: .normal)
-        servant.layer.borderColor = UIColor.blue.cgColor
+        servant.setTitleColor(UIColor.black, for: .normal)
+        servant.layer.borderColor = UIColor.black.cgColor
         servant.layer.borderWidth = 1
         servant.addTarget(self, action: #selector(servantAction(sender:)), for: .touchUpInside)
         actionBar.addSubview(servant)
@@ -86,8 +85,8 @@ class CardsViewController: UIViewController, UICollectionViewDataSource, UIColle
         craftEssence = UIButton.init(type: .custom)
         craftEssence.frame = CGRect (x: servant.frame.origin.x+servant.frame.size.width+10, y: servant.frame.origin.y, width: 80, height: servant.frame.size.height)
         craftEssence.setTitle("概念禮裝", for: .normal)
-        craftEssence.setTitleColor(UIColor.blue, for: .normal)
-        craftEssence.layer.borderColor = UIColor.blue.cgColor
+        craftEssence.setTitleColor(UIColor.black, for: .normal)
+        craftEssence.layer.borderColor = UIColor.black.cgColor
         craftEssence.layer.borderWidth = 1
         craftEssence.addTarget(self, action: #selector(craftEssenceAction(sender:)), for: .touchUpInside)
         actionBar.addSubview(craftEssence)
@@ -104,7 +103,7 @@ class CardsViewController: UIViewController, UICollectionViewDataSource, UIColle
         collectionView.showsVerticalScrollIndicator = false
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(CardCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView.register(CardCell.self, forCellWithReuseIdentifier: NSStringFromClass(CardCell.self))
         view.addSubview(collectionView)
     }
     
@@ -114,8 +113,9 @@ class CardsViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as?CardCell
-        cell!.cardImageView.image = dataSource![indexPath.row] as? UIImage
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(CardCell.self), for: indexPath) as?CardCell
+        let servantModel = dataSource![indexPath.row]
+        cell?.cardImageView.kf.setImage(with: URL(string: servantModel.iconURL))
         
         return cell!
     }

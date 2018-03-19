@@ -86,8 +86,8 @@
 		6325AB5620295FD200D7672D /* FGOFinder */ = {
 			isa = PBXGroup;
 			children = (
-				63680E39205930FB0002933F /* CardInfo */,
 				63680E40205930FB0002933F /* Cards */,
+				63680E39205930FB0002933F /* CardInfo */,
 				71000EA32054500E00C2A6D1 /* Utility */,
 				6325AB5720295FD200D7672D /* AppDelegate.swift */,
 				6325AB6020295FD200D7672D /* Assets.xcassets */,
@@ -271,10 +271,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-FGOFinder/Pods-FGOFinder-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

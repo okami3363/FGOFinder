@@ -31,6 +31,7 @@ class KeepSkillsCell: UITableViewCell {
 //        contentView.backgroundColor = UIColor.gray
         
         skillImageView = UIImageView(frame: CGRect (x: 10, y: 10, width: 50, height: 50))
+        skillImageView.contentMode = .scaleAspectFit
         contentView.addSubview(self.skillImageView)
         
         skillNameLabel = UILabel(frame: CGRect (x: skillImageView.frame.origin.x+skillImageView.frame.size.width+10, y: skillImageView.frame.origin.y, width: (frame.size.width), height: 16))
