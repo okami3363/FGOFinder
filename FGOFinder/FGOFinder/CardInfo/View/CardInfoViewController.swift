@@ -9,6 +9,11 @@
 import UIKit
 import Kingfisher
 
+enum ServantInfoType {
+    case skill
+    case material
+}
+
 class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate {
     
     var backButton: UIButton!
@@ -25,7 +30,10 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     var materialButton: UIButton!
     
     var servantModel: ServantModel!
-    var servantSkillDataSource: [Array<Any>]!
+    var skillDataSource: [Array<Any>]!
+    var materialDataSource: [Array<Any>]!
+    
+    var showType: ServantInfoType?
 
     override func viewDidLoad() -> Void {
         super.viewDidLoad()
@@ -39,9 +47,13 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     
     //MARK: - Func
     func setupDataSource() -> Void {
-        servantModel = ServantModel()
-        servantSkillDataSource = [servantModel.keepSkillsArrry, servantModel.careerSkillsArrry, servantModel.npArray];
+        showType = .skill
+        
         nameLabel.text = "艾蕾修卡"
+        
+        servantModel = ServantModel()
+        skillDataSource = [servantModel.keepSkillsArrry, servantModel.careerSkillsArrry, servantModel.npArray];
+        materialDataSource = [servantModel.evolution1Array]
 //        collectionView.reloadData()
         
         performSelector(onMainThread: #selector(scrollToDefaultServantPhoto), with: nil, waitUntilDone: false)
@@ -97,6 +109,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         skillButton.setTitleColor(UIColor.black, for: .normal)
         skillButton.layer.borderWidth = 1
         skillButton.layer.borderColor = UIColor.black.cgColor
+        skillButton.addTarget(self, action: #selector(skillAction(sender:)), for: .touchUpInside)
         view.addSubview(skillButton)
         
         materialButton = UIButton.init(type: .custom)
@@ -105,6 +118,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         materialButton.setTitleColor(UIColor.black, for: .normal)
         materialButton.layer.borderWidth = 1
         materialButton.layer.borderColor = UIColor.black.cgColor
+        materialButton.addTarget(self, action: #selector(materialAction(sender:)), for: .touchUpInside)
         view.addSubview(materialButton)
         
         tableView = UITableView.init(frame: CGRect (x: collectionView.frame.origin.x+collectionView.frame.size.width, y: skillButton.frame.origin.y+skillButton.frame.size.height, width: UIScreen.main.bounds.width-(additionalSafeAreaInsets.left+additionalSafeAreaInsets.right)-collectionView.frame.size.width, height: servantPhotoHeight-nameLabel.frame.size.height-skillButton.frame.size.height), style: .grouped)
@@ -124,9 +138,19 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         navigationController!.popViewController(animated: true)
     }
     
+    @objc func skillAction(sender: UIButton) -> Void {
+        showType = .skill
+        tableView.reloadData()
+    }
+    
+    @objc func materialAction(sender: UIButton) -> Void {
+        showType = .material
+        tableView.reloadData()
+    }
+    
     //MARK: - UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
-        return servantSkillDataSource.count
+        return skillDataSource.count
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -134,7 +158,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return servantSkillDataSource[section].count
+        return skillDataSource[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -154,7 +178,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         if indexPath.section == 0 || indexPath.section == 1 || indexPath.section == 2 {
 //            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! KeepSkillsCell
 //            let keepSkillModel = servantModel.keepSkillsArrry![indexPath.row]
-            let keepSkillsArrry = servantSkillDataSource[indexPath.section]
+            let keepSkillsArrry = skillDataSource[indexPath.section]
             let keepSkillModel: KeepSkillModel = keepSkillsArrry[indexPath.row] as! KeepSkillModel
             
             var i = 0
@@ -178,7 +202,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var rowHeight = 0
         if indexPath.section == 0 || indexPath.section == 1 || indexPath.section == 2 {
-            let keepSkillsArrry = servantSkillDataSource[indexPath.section]
+            let keepSkillsArrry = skillDataSource[indexPath.section]
             let keepSkillModel: KeepSkillModel = keepSkillsArrry[indexPath.row] as! KeepSkillModel
             rowHeight = rowHeight+10+50+8+Int(keepSkillModel.titleDescriptionHeight)+10
         }

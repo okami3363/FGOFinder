@@ -17,6 +17,8 @@ class ServantModel: NSObject {
     var careerSkillsArrry: [CareerSkillModel]!
     var npArray:[NoblePhantasmsModel]!
     
+    var evolution1Array:[NeedMaterialModel]!
+    
     override init() {
         super.init()
         iconURL = "https://kazemai.github.io/fgo-vz/common/images/icon/faces/3032000.png"
@@ -72,6 +74,26 @@ class ServantModel: NSObject {
         np.name = "霊峰踏抱く冥府の鞴"
         np.descriptionArrry = ["自身的Buster卡性能提升(1回合)\n┗< OverCharge的話效果提升>\n    [10%|20%|30%|40%|50%]", "┗對敵全體的強力攻擊[Lv.]\n    [300%|400%|450%|475%|500%]", "┗〔冥界加護〕狀態的我方全體的攻擊力提升(3回合)\n    [20%]"]
         npArray = [np]
+        
+        let needMaterial1 = NeedMaterialModel()
+        needMaterial1.material = MaterialModel()
+        needMaterial1.material.iconURL = "https://kazemai.github.io/fgo-vz/common/images/icon/items/7103.png"
+        needMaterial1.amount = "x12"
+        
+        let needMaterial2 = NeedMaterialModel()
+        needMaterial2.material = MaterialModel()
+        needMaterial2.material.iconURL = "https://kazemai.github.io/fgo-vz/common/images/icon/items/6517.png"
+        needMaterial1.amount = "x4"
+        
+        let needMaterial3 = NeedMaterialModel()
+        needMaterial3.material = MaterialModel()
+        needMaterial3.material.iconURL = "https://kazemai.github.io/fgo-vz/common/images/icon/items/6531.png"
+        needMaterial3.amount = "x5"
+        
+        let needMaterial4 = NeedQPModel()
+        needMaterial4.qp = "3,000,000QP"
+        
+        evolution1Array = [needMaterial1, needMaterial2, needMaterial3, needMaterial4]
     }
 }
 
@@ -118,4 +140,15 @@ class KeepSkillModel: NSObject {
         super.init()
         descriptionSizeArray = []
     }
+}
+
+class NeedMaterialModel: NSObject {
+    
+    var material: MaterialModel!
+    var amount: String!
+}
+
+class NeedQPModel: NeedMaterialModel {
+    
+    var qp: String!
 }

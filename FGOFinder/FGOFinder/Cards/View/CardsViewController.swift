@@ -55,12 +55,12 @@ class CardsViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     @objc func servantAction(sender: UIButton) -> Void {
-        showType = ShowType.servant
+        showType = .servant
         setupDataSource()
     }
     
     @objc func craftEssenceAction(sender: UIButton) -> Void {
-        showType = ShowType.craftEssence
+        showType = .craftEssence
         setupDataSource()
     }
     

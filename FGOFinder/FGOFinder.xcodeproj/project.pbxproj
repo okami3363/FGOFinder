@@ -19,6 +19,7 @@
 		71000EAD2054500F00C2A6D1 /* LayoutFormula.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71000EA42054500E00C2A6D1 /* LayoutFormula.swift */; };
 		71000EAE2054500F00C2A6D1 /* FFRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71000EA52054500E00C2A6D1 /* FFRequestHandler.swift */; };
 		7157122720599160008CF524 /* CareerSkillsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157122620599160008CF524 /* CareerSkillsCell.swift */; };
+		7159F42E20601DB900A32F81 /* MaterialModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7159F42D20601DB900A32F81 /* MaterialModel.swift */; };
 		71B202E6205D9833001C630C /* NoblePhantasmsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B202E5205D9833001C630C /* NoblePhantasmsCell.swift */; };
 		B3FB7ECC10CF55EC728E0463 /* Pods_FGOFinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE285755413051F989926F1C /* Pods_FGOFinder.framework */; };
 /* End PBXBuildFile section */
@@ -38,6 +39,7 @@
 		71000EA42054500E00C2A6D1 /* LayoutFormula.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutFormula.swift; sourceTree = "<group>"; };
 		71000EA52054500E00C2A6D1 /* FFRequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFRequestHandler.swift; sourceTree = "<group>"; };
 		7157122620599160008CF524 /* CareerSkillsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerSkillsCell.swift; sourceTree = "<group>"; };
+		7159F42D20601DB900A32F81 /* MaterialModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialModel.swift; sourceTree = "<group>"; };
 		71B202E5205D9833001C630C /* NoblePhantasmsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoblePhantasmsCell.swift; sourceTree = "<group>"; };
 		98C1CF6550853B9D4F1AD93E /* Pods-FGOFinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FGOFinder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FGOFinder/Pods-FGOFinder.debug.xcconfig"; sourceTree = "<group>"; };
 		BE285755413051F989926F1C /* Pods_FGOFinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FGOFinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				63680E3B205930FB0002933F /* ServantModel.swift */,
+				7159F42D20601DB900A32F81 /* MaterialModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				63680E44205930FB0002933F /* ServantModel.swift in Sources */,
 				71000EAE2054500F00C2A6D1 /* FFRequestHandler.swift in Sources */,
 				63680E46205930FB0002933F /* ServantPhotoCell.swift in Sources */,
+				7159F42E20601DB900A32F81 /* MaterialModel.swift in Sources */,
 				71000EAD2054500F00C2A6D1 /* LayoutFormula.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
