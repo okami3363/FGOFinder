@@ -48,9 +48,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     //MARK: - Func
     func setupDataSource() -> Void {
         showType = .skill
-        
         nameLabel.text = "艾蕾修卡"
-        
         servantModel = ServantModel()
         skillDataSource = [servantModel.keepSkillsArrry, servantModel.careerSkillsArrry, servantModel.npArray];
         materialDataSource = [servantModel.evolutionArray, servantModel.evolutionArray]
@@ -204,9 +202,9 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         else {
             cellIdentifier = NSStringFromClass(MaterialCell.self)
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! MaterialCell
-            
             let sectionArray = materialDataSource[indexPath.section]
             let evolutionModel = sectionArray[indexPath.row] as! EvolutionModel
+            
             var i = 0
             for needMaterialModel in evolutionModel.evolutionArray {
                 if needMaterialModel.isKind(of: NeedQPModel.self) {
@@ -221,6 +219,8 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
                 }
                i+=1
             }
+            cell.intensifyTitleLabel.text = evolutionModel.name
+            
             return cell
         }
     }
@@ -237,7 +237,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
             }
         }
         else {
-            rowHeight = 10+50+10
+            rowHeight = 20+50+10
         }
         return CGFloat(rowHeight)
     }

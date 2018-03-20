@@ -10,6 +10,7 @@ import UIKit
 
 class MaterialCell: UITableViewCell {
     
+    var intensifyTitleLabel: UILabel!
     var materialArray: [MaterialAmountView]!
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -20,21 +21,25 @@ class MaterialCell: UITableViewCell {
     
     func setupUI() -> Void {
         let cellWidth = LayoutFormula().materialCellWidth()
+        
+        intensifyTitleLabel = UILabel(frame: CGRect (x: 10, y: 0, width: cellWidth, height: 20))
+        contentView.addSubview(intensifyTitleLabel)
+        
         let width = 50+30
-        var x = 10
+        var x = Int(intensifyTitleLabel.frame.origin.x)
+        let y = Int(intensifyTitleLabel.frame.origin.y+intensifyTitleLabel.frame.size.height)
         var i = 1
         for _ in 1...4 {
-            var rect = CGRect (x: x, y: 10, width: width, height: 50)
+            var rect = CGRect (x: x, y: y, width: width, height: 50)
             var materialAmountView: MaterialAmountView
             if i == 4 {
-                rect = CGRect (x: x, y: 10, width: cellWidth-x, height: 50)
+                rect = CGRect (x: x, y: 20, width: cellWidth-x, height: 50)
                 materialAmountView = MaterialAmountView(frame: rect)
                 materialAmountView.showQP()
             }
             else {
                 materialAmountView = MaterialAmountView(frame: rect)
             }
-            
             contentView.addSubview(materialAmountView)
             materialArray.append(materialAmountView)
             x+=width
@@ -56,6 +61,7 @@ class MaterialCell: UITableViewCell {
 
 class MaterialAmountView: UIView {
     
+    var intensifyLabel: UILabel!
     var materialImageView: UIImageView!
     var amountLabel: UILabel!
     var qpLabel: UILabel!
@@ -76,7 +82,7 @@ class MaterialAmountView: UIView {
         amountLabel = UILabel(frame: CGRect (x: materialImageView.frame.origin.x+materialImageView.frame.size.width, y: materialImageView.frame.origin.y, width: 30, height: materialImageView.frame.size.height))
         addSubview(amountLabel)
         
-        qpLabel = UILabel(frame: CGRect (x: 0, y: 0, width: frame.size.width, height: frame.size.height))
+        qpLabel = UILabel(frame: CGRect (x: 0, y: 0, width: frame.size.width, height: materialImageView.frame.size.height))
         qpLabel.textAlignment = .right
         qpLabel.isHidden = true
         addSubview(qpLabel)

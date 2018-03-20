@@ -70,7 +70,7 @@ class CardsViewController: UIViewController, UICollectionViewDataSource, UIColle
         additionalSafeAreaInsets = LayoutFormula().landscapeAdditionalSafeAreaInsets()
         
         actionBar = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width-(0), height: 40));
-        actionBar.backgroundColor = UIColor.lightGray
+        actionBar.backgroundColor = UIColor.clear
         view.addSubview(actionBar)
         
         servant = UIButton.init(type: .custom)
