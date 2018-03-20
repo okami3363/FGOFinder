@@ -17,7 +17,7 @@ class ServantModel: NSObject {
     var careerSkillsArrry: [CareerSkillModel]!
     var npArray:[NoblePhantasmsModel]!
     
-    var evolution1Array:[NeedMaterialModel]!
+    var evolutionArray: [EvolutionModel]!
     
     override init() {
         super.init()
@@ -75,25 +75,71 @@ class ServantModel: NSObject {
         np.descriptionArrry = ["自身的Buster卡性能提升(1回合)\n┗< OverCharge的話效果提升>\n    [10%|20%|30%|40%|50%]", "┗對敵全體的強力攻擊[Lv.]\n    [300%|400%|450%|475%|500%]", "┗〔冥界加護〕狀態的我方全體的攻擊力提升(3回合)\n    [20%]"]
         npArray = [np]
         
+        testData()
+    }
+    
+    func testData() -> Void {
         let needMaterial1 = NeedMaterialModel()
         needMaterial1.material = MaterialModel()
-        needMaterial1.material.iconURL = "https://kazemai.github.io/fgo-vz/common/images/icon/items/7103.png"
-        needMaterial1.amount = "x12"
-        
-        let needMaterial2 = NeedMaterialModel()
-        needMaterial2.material = MaterialModel()
-        needMaterial2.material.iconURL = "https://kazemai.github.io/fgo-vz/common/images/icon/items/6517.png"
-        needMaterial1.amount = "x4"
-        
-        let needMaterial3 = NeedMaterialModel()
-        needMaterial3.material = MaterialModel()
-        needMaterial3.material.iconURL = "https://kazemai.github.io/fgo-vz/common/images/icon/items/6531.png"
-        needMaterial3.amount = "x5"
-        
+        needMaterial1.material.iconURL = "https://kazemai.github.io/fgo-vz/common/images/icon/items/7003.png"
+        needMaterial1.amount = "x5"
         let needMaterial4 = NeedQPModel()
-        needMaterial4.qp = "3,000,000QP"
+        needMaterial4.qp = "100,000QP"
+        let evolution1 = EvolutionModel()
+        evolution1.name = "第1階段"
+        evolution1.evolutionArray = [needMaterial1, needMaterial4]
         
-        evolution1Array = [needMaterial1, needMaterial2, needMaterial3, needMaterial4]
+        let needMaterial21 = NeedMaterialModel()
+        needMaterial21.material = MaterialModel()
+        needMaterial21.material.iconURL = "https://kazemai.github.io/fgo-vz/common/images/icon/items/7003.png"
+        needMaterial21.amount = "x12"
+        let needMaterial22 = NeedMaterialModel()
+        needMaterial22.material = MaterialModel()
+        needMaterial22.material.iconURL = "https://kazemai.github.io/fgo-vz/common/images/icon/items/6508.png"
+        needMaterial22.amount = "x8"
+        let needMaterial24 = NeedQPModel()
+        needMaterial24.qp = "300,000QP"
+        let evolution2 = EvolutionModel()
+        evolution2.name = "第2階段"
+        evolution2.evolutionArray = [needMaterial21, needMaterial22, needMaterial24]
+        
+        let needMaterial31 = NeedMaterialModel()
+        needMaterial31.material = MaterialModel()
+        needMaterial31.material.iconURL = "https://kazemai.github.io/fgo-vz/common/images/icon/items/7103.png"
+        needMaterial31.amount = "x5"
+        let needMaterial32 = NeedMaterialModel()
+        needMaterial32.material = MaterialModel()
+        needMaterial32.material.iconURL = "https://kazemai.github.io/fgo-vz/common/images/icon/items/6522.png"
+        needMaterial32.amount = "x29"
+        let needMaterial33 = NeedMaterialModel()
+        needMaterial33.material = MaterialModel()
+        needMaterial33.material.iconURL = "https://kazemai.github.io/fgo-vz/common/images/icon/items/6517.png"
+        needMaterial33.amount = "x2"
+        let needMaterial34 = NeedQPModel()
+        needMaterial34.qp = "1,000,000QP"
+        let evolution3 = EvolutionModel()
+        evolution3.name = "第3階段"
+        evolution3.evolutionArray = [needMaterial31, needMaterial32, needMaterial33, needMaterial34]
+        
+        let needMaterial41 = NeedMaterialModel()
+        needMaterial41.material = MaterialModel()
+        needMaterial41.material.iconURL = "https://kazemai.github.io/fgo-vz/common/images/icon/items/7103.png"
+        needMaterial41.amount = "x12"
+        let needMaterial42 = NeedMaterialModel()
+        needMaterial42.material = MaterialModel()
+        needMaterial42.material.iconURL = "https://kazemai.github.io/fgo-vz/common/images/icon/items/6517.png"
+        needMaterial42.amount = "x4"
+        let needMaterial43 = NeedMaterialModel()
+        needMaterial43.material = MaterialModel()
+        needMaterial43.material.iconURL = "https://kazemai.github.io/fgo-vz/common/images/icon/items/6531.png"
+        needMaterial43.amount = "x5"
+        let needMaterial44 = NeedQPModel()
+        needMaterial44.qp = "3,000,000QP"
+        let evolution4 = EvolutionModel()
+        evolution4.name = "第4階段"
+        evolution4.evolutionArray = [needMaterial41, needMaterial42, needMaterial43, needMaterial44]
+        
+        evolutionArray = [evolution1, evolution2, evolution3, evolution4]
     }
 }
 
@@ -140,6 +186,12 @@ class KeepSkillModel: NSObject {
         super.init()
         descriptionSizeArray = []
     }
+}
+
+class EvolutionModel: NSObject {
+    
+    var name: String!
+    var evolutionArray: [NeedMaterialModel]!
 }
 
 class NeedMaterialModel: NSObject {

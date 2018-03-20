@@ -53,8 +53,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         
         servantModel = ServantModel()
         skillDataSource = [servantModel.keepSkillsArrry, servantModel.careerSkillsArrry, servantModel.npArray];
-        materialDataSource = [servantModel.evolution1Array]
-//        collectionView.reloadData()
+        materialDataSource = [servantModel.evolutionArray, servantModel.evolutionArray]
         
         performSelector(onMainThread: #selector(scrollToDefaultServantPhoto), with: nil, waitUntilDone: false)
     }
@@ -130,6 +129,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         tableView.register(KeepSkillsCell.self, forCellReuseIdentifier: NSStringFromClass(KeepSkillsCell.self))
         tableView.register(CareerSkillsCell.self, forCellReuseIdentifier: NSStringFromClass(CareerSkillsCell.self))
         tableView.register(NoblePhantasmsCell.self, forCellReuseIdentifier: NSStringFromClass(NoblePhantasmsCell.self))
+        tableView.register(MaterialCell.self, forCellReuseIdentifier: NSStringFromClass(MaterialCell.self))
         
         view.addSubview(tableView)
     }
@@ -150,7 +150,9 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     
     //MARK: - UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
-        return skillDataSource.count
+        var number = 0
+        number = (showType == ServantInfoType.skill ?  skillDataSource.count : materialDataSource.count)
+        return number
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -158,55 +160,85 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return skillDataSource[section].count
+        var number = 0
+        number = (showType == ServantInfoType.skill ?  skillDataSource[section].count : materialDataSource[section].count)
+        return number
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var cellIdentifier = ""
-        switch indexPath.section {
-        case 0:
-            cellIdentifier = NSStringFromClass(KeepSkillsCell.self)
-        case 1:
-            cellIdentifier = NSStringFromClass(CareerSkillsCell.self)
-        case 2:
-            cellIdentifier = NSStringFromClass(NoblePhantasmsCell.self)
-        default: break
-        }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! KeepSkillsCell
-        if indexPath.section == 0 || indexPath.section == 1 || indexPath.section == 2 {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! KeepSkillsCell
-//            let keepSkillModel = servantModel.keepSkillsArrry![indexPath.row]
-            let keepSkillsArrry = skillDataSource[indexPath.section]
-            let keepSkillModel: KeepSkillModel = keepSkillsArrry[indexPath.row] as! KeepSkillModel
-            
-            var i = 0
-            for skillDescription in keepSkillModel.descriptionArrry! {
-                let skillDescriptionLabel:UILabel = cell.skillDescriptionLabelArray[i]
-                skillDescriptionLabel.frame = keepSkillModel.descriptionSizeArray![i]
-                skillDescriptionLabel.text = skillDescription
-                i+=1
+        if showType ==  ServantInfoType.skill {
+            switch indexPath.section {
+            case 0:
+                cellIdentifier = NSStringFromClass(KeepSkillsCell.self)
+            case 1:
+                cellIdentifier = NSStringFromClass(CareerSkillsCell.self)
+            case 2:
+                cellIdentifier = NSStringFromClass(NoblePhantasmsCell.self)
+            default: break
             }
             
-            cell.skillImageView.kf.setImage(with: URL(string: keepSkillModel.iconURL))
-            cell.skillNameLabel.text = keepSkillModel.name
-            cell.skillColdDownLabel.text = keepSkillModel.coldDown
-            cell.skillWhenGetLabel.text = keepSkillModel.whenGet
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! KeepSkillsCell
+            if indexPath.section == 0 || indexPath.section == 1 || indexPath.section == 2 {
+                let keepSkillsArrry = skillDataSource[indexPath.section]
+                let keepSkillModel: KeepSkillModel = keepSkillsArrry[indexPath.row] as! KeepSkillModel
+                
+                var i = 0
+                for skillDescription in keepSkillModel.descriptionArrry! {
+                    let skillDescriptionLabel:UILabel = cell.skillDescriptionLabelArray[i]
+                    skillDescriptionLabel.frame = keepSkillModel.descriptionSizeArray![i]
+                    skillDescriptionLabel.text = skillDescription
+                    i+=1
+                }
+                
+                cell.skillImageView.kf.setImage(with: URL(string: keepSkillModel.iconURL))
+                cell.skillNameLabel.text = keepSkillModel.name
+                cell.skillColdDownLabel.text = keepSkillModel.coldDown
+                cell.skillWhenGetLabel.text = keepSkillModel.whenGet
+            }
+            
+            return cell
         }
-        
-        return cell
+        else {
+            cellIdentifier = NSStringFromClass(MaterialCell.self)
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! MaterialCell
+            
+            let sectionArray = materialDataSource[indexPath.section]
+            let evolutionModel = sectionArray[indexPath.row] as! EvolutionModel
+            var i = 0
+            for needMaterialModel in evolutionModel.evolutionArray {
+                if needMaterialModel.isKind(of: NeedQPModel.self) {
+                    let needQPModel = needMaterialModel as! NeedQPModel
+                    let materialAmountView = cell.materialArray[cell.materialArray.count-1]
+                    materialAmountView.qpLabel.text = needQPModel.qp
+                }
+                else {
+                    let materialAmountView = cell.materialArray[i]
+                    materialAmountView.materialImageView.kf.setImage(with: URL(string: needMaterialModel.material.iconURL))
+                    materialAmountView.amountLabel.text = needMaterialModel.amount
+                }
+               i+=1
+            }
+            return cell
+        }
     }
     
     //MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var rowHeight = 0
-        if indexPath.section == 0 || indexPath.section == 1 || indexPath.section == 2 {
-            let keepSkillsArrry = skillDataSource[indexPath.section]
-            let keepSkillModel: KeepSkillModel = keepSkillsArrry[indexPath.row] as! KeepSkillModel
-            rowHeight = rowHeight+10+50+8+Int(keepSkillModel.titleDescriptionHeight)+10
-        }
         
+        if showType ==  ServantInfoType.skill {
+            if indexPath.section == 0 || indexPath.section == 1 || indexPath.section == 2 {
+                let keepSkillsArrry = skillDataSource[indexPath.section]
+                let keepSkillModel: KeepSkillModel = keepSkillsArrry[indexPath.row] as! KeepSkillModel
+                rowHeight = rowHeight+10+50+8+Int(keepSkillModel.titleDescriptionHeight)+10
+            }
+        }
+        else {
+            rowHeight = 10+50+10
+        }
         return CGFloat(rowHeight)
     }
     

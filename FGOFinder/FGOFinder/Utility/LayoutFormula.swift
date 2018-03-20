@@ -34,4 +34,10 @@ class LayoutFormula: NSObject {
         }
         return insets
     }
+    
+    func materialCellWidth() -> Int {
+        let insets = landscapeAdditionalSafeAreaInsets()
+        let photoSize = servantPhotoSize()
+        return Int(UIScreen.main.bounds.size.width-insets.left-insets.right-photoSize.width)
+    }
 }

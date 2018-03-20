@@ -16,6 +16,7 @@
 		63680E47205930FB0002933F /* KeepSkillsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63680E3F205930FB0002933F /* KeepSkillsCell.swift */; };
 		63680E48205930FB0002933F /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63680E42205930FB0002933F /* CardCell.swift */; };
 		63680E49205930FB0002933F /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63680E43205930FB0002933F /* CardsViewController.swift */; };
+		63731B312060A8F500109FD3 /* MaterialCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63731B302060A8F500109FD3 /* MaterialCell.swift */; };
 		71000EAD2054500F00C2A6D1 /* LayoutFormula.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71000EA42054500E00C2A6D1 /* LayoutFormula.swift */; };
 		71000EAE2054500F00C2A6D1 /* FFRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71000EA52054500E00C2A6D1 /* FFRequestHandler.swift */; };
 		7157122720599160008CF524 /* CareerSkillsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157122620599160008CF524 /* CareerSkillsCell.swift */; };
@@ -36,6 +37,7 @@
 		63680E3F205930FB0002933F /* KeepSkillsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeepSkillsCell.swift; sourceTree = "<group>"; };
 		63680E42205930FB0002933F /* CardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		63680E43205930FB0002933F /* CardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
+		63731B302060A8F500109FD3 /* MaterialCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialCell.swift; sourceTree = "<group>"; };
 		71000EA42054500E00C2A6D1 /* LayoutFormula.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutFormula.swift; sourceTree = "<group>"; };
 		71000EA52054500E00C2A6D1 /* FFRequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFRequestHandler.swift; sourceTree = "<group>"; };
 		7157122620599160008CF524 /* CareerSkillsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerSkillsCell.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				63680E3D205930FB0002933F /* CardInfoViewController.swift */,
+				63731B302060A8F500109FD3 /* MaterialCell.swift */,
 				63680E3E205930FB0002933F /* ServantPhotoCell.swift */,
 				63680E3F205930FB0002933F /* KeepSkillsCell.swift */,
 				7157122620599160008CF524 /* CareerSkillsCell.swift */,
@@ -301,6 +304,7 @@
 				63680E47205930FB0002933F /* KeepSkillsCell.swift in Sources */,
 				63680E48205930FB0002933F /* CardCell.swift in Sources */,
 				63680E44205930FB0002933F /* ServantModel.swift in Sources */,
+				63731B312060A8F500109FD3 /* MaterialCell.swift in Sources */,
 				71000EAE2054500F00C2A6D1 /* FFRequestHandler.swift in Sources */,
 				63680E46205930FB0002933F /* ServantPhotoCell.swift in Sources */,
 				7159F42E20601DB900A32F81 /* MaterialModel.swift in Sources */,
