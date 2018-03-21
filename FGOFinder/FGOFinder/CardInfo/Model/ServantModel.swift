@@ -10,12 +10,16 @@ import UIKit
 
 class ServantModel: NSObject {
     
+    var name: String!
     var iconURL: String!
     
     var photosArray: [String]!
-    var keepSkillsArrry: [KeepSkillModel]!
-    var careerSkillsArrry: [CareerSkillModel]!
-    var npArray:[NoblePhantasmsModel]!
+    var keepSkillGroupModel: SkillGroupModel!
+    var careerSkillGroupModel: SkillGroupModel!
+    var npSkillGroupModel: SkillGroupModel!
+//    var keepSkillsArrry: [KeepSkillModel]!
+//    var careerSkillsArrry: [CareerSkillModel]!
+//    var npArray:[NoblePhantasmsModel]!
     
     var evolutionArray: [EvolutionModel]!
     
@@ -50,7 +54,10 @@ class ServantModel: NSObject {
         
         keepSkill3.descriptionArrry = ["對我方全體賦予〔冥界加護〕狀態<能受到寶具「霊峰踏抱く冥府の鞴」追加效果狀態>(3回合)", "┗防禦力提升[Lv.](3回合)\n    [10%|11%|12%|13%|14%|15%|16%|17%|18%|19%|20%]", "┗NP獲得量提升[Lv.](3回合)\n    [20%|21%|22%|23%|24%|25%|26%|27%|28%|29%|30%]", "┗最大HP提升[Lv.](3回合)\n    [2000|2100|2200|2300|2400|2500|2600|2700|2800|2900|3000]"]
         
-        keepSkillsArrry = [keepSkill1, keepSkill2, keepSkill3]
+//        keepSkillsArrry = [keepSkill1, keepSkill2, keepSkill3]
+        keepSkillGroupModel = SkillGroupModel()
+        keepSkillGroupModel.skillType = "保有技能"
+        keepSkillGroupModel.skillArrry = [keepSkill1, keepSkill2, keepSkill3]
         
         let careerSkill1 = CareerSkillModel()
         careerSkill1.iconURL = "https://kazemai.github.io/fgo-vz/common/images/SkillIcon/SkillIcon_100.png"
@@ -67,13 +74,20 @@ class ServantModel: NSObject {
         careerSkill3.name = "女神の神核 B"
         careerSkill3.descriptionArrry = ["對自身賦予傷害加成狀態：225\n┗弱體耐性提升：22.5%"]
         
-        careerSkillsArrry = [careerSkill1, careerSkill2, careerSkill3]
+//        careerSkillsArrry = [careerSkill1, careerSkill2, careerSkill3]
+        careerSkillGroupModel = SkillGroupModel()
+        careerSkillGroupModel.skillType = "職階技能"
+        careerSkillGroupModel.skillArrry = [careerSkill1, careerSkill2, careerSkill3]
         
         let np = NoblePhantasmsModel()
         np.iconURL = "https://kazemai.github.io/fgo-vz/common/images/icon/cmdCard/icon_cmdCard_2.png"
         np.name = "霊峰踏抱く冥府の鞴"
         np.descriptionArrry = ["自身的Buster卡性能提升(1回合)\n┗< OverCharge的話效果提升>\n    [10%|20%|30%|40%|50%]", "┗對敵全體的強力攻擊[Lv.]\n    [300%|400%|450%|475%|500%]", "┗〔冥界加護〕狀態的我方全體的攻擊力提升(3回合)\n    [20%]"]
-        npArray = [np]
+//        npArray = [np]
+        
+        npSkillGroupModel = SkillGroupModel()
+        npSkillGroupModel.skillType = "寶具"
+        npSkillGroupModel.skillArrry = [np]
         
         testData()
     }
@@ -141,6 +155,11 @@ class ServantModel: NSObject {
         
         evolutionArray = [evolution1, evolution2, evolution3, evolution4]
     }
+}
+
+class SkillGroupModel: NSObject {
+    var skillType: String!
+    var skillArrry: [KeepSkillModel]!
 }
 
 class NoblePhantasmsModel: KeepSkillModel {

@@ -30,7 +30,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     var materialButton: UIButton!
     
     var servantModel: ServantModel!
-    var skillDataSource: [Array<Any>]!
+    var skillDataSource: [SkillGroupModel]!
     var materialDataSource: [Array<Any>]!
     
     var showType: ServantInfoType?
@@ -48,9 +48,9 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     //MARK: - Func
     func setupDataSource() -> Void {
         showType = .skill
-        nameLabel.text = "艾蕾修卡"
         servantModel = ServantModel()
-        skillDataSource = [servantModel.keepSkillsArrry, servantModel.careerSkillsArrry, servantModel.npArray];
+        nameLabel.text = servantModel.name
+        skillDataSource = [servantModel.keepSkillGroupModel, servantModel.careerSkillGroupModel, servantModel.npSkillGroupModel];
         materialDataSource = [servantModel.evolutionArray, servantModel.evolutionArray]
         
         performSelector(onMainThread: #selector(scrollToDefaultServantPhoto), with: nil, waitUntilDone: false)
@@ -159,7 +159,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var number = 0
-        number = (showType == ServantInfoType.skill ?  skillDataSource[section].count : materialDataSource[section].count)
+        number = (showType == ServantInfoType.skill ?  skillDataSource[section].skillArrry.count : materialDataSource[section].count)
         return number
     }
     
@@ -180,8 +180,8 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
             
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! KeepSkillsCell
             if indexPath.section == 0 || indexPath.section == 1 || indexPath.section == 2 {
-                let keepSkillsArrry = skillDataSource[indexPath.section]
-                let keepSkillModel: KeepSkillModel = keepSkillsArrry[indexPath.row] as! KeepSkillModel
+                let skillGroupModel = skillDataSource[indexPath.section]
+                let keepSkillModel: KeepSkillModel = skillGroupModel.skillArrry[indexPath.row]
                 
                 var i = 0
                 for skillDescription in keepSkillModel.descriptionArrry! {
@@ -231,8 +231,8 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         
         if showType ==  ServantInfoType.skill {
             if indexPath.section == 0 || indexPath.section == 1 || indexPath.section == 2 {
-                let keepSkillsArrry = skillDataSource[indexPath.section]
-                let keepSkillModel: KeepSkillModel = keepSkillsArrry[indexPath.row] as! KeepSkillModel
+                let skillGroupModel = skillDataSource[indexPath.section]
+                let keepSkillModel: KeepSkillModel = skillGroupModel.skillArrry[indexPath.row]
                 rowHeight = rowHeight+10+50+8+Int(keepSkillModel.titleDescriptionHeight)+10
             }
         }
