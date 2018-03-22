@@ -21,7 +21,9 @@ class ServantModel: NSObject {
 //    var careerSkillsArrry: [CareerSkillModel]!
 //    var npArray:[NoblePhantasmsModel]!
     
-    var evolutionArray: [EvolutionModel]!
+    var evolutionGroupModel: MateriaGroupModel!
+//    var evolutionArray: [EvolutionModel]!
+    var intensifyGroupModel: MateriaGroupModel!
     
     override init() {
         super.init()
@@ -153,7 +155,15 @@ class ServantModel: NSObject {
         evolution4.name = "第4階段"
         evolution4.evolutionArray = [needMaterial41, needMaterial42, needMaterial43, needMaterial44]
         
-        evolutionArray = [evolution1, evolution2, evolution3, evolution4]
+//        evolutionArray = [evolution1, evolution2, evolution3, evolution4]
+        
+        evolutionGroupModel = MateriaGroupModel()
+        evolutionGroupModel.materiaType = "靈基再臨"
+        evolutionGroupModel.materiaArrry = [evolution1, evolution2, evolution3, evolution4]
+        
+        intensifyGroupModel = MateriaGroupModel()
+        intensifyGroupModel.materiaType = "技能強化"
+        intensifyGroupModel.materiaArrry = [evolution1, evolution2, evolution3, evolution4, evolution1, evolution2, evolution3, evolution4, evolution1, evolution2]
     }
 }
 
@@ -207,10 +217,17 @@ class KeepSkillModel: NSObject {
     }
 }
 
+class MateriaGroupModel: NSObject {
+    var materiaType: String!
+    var materiaArrry: [EvolutionModel]!
+}
+
 class EvolutionModel: NSObject {
-    
     var name: String!
     var evolutionArray: [NeedMaterialModel]!
+}
+
+class intensifyModel: EvolutionModel {
 }
 
 class NeedMaterialModel: NSObject {

@@ -31,7 +31,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     
     var servantModel: ServantModel!
     var skillDataSource: [SkillGroupModel]!
-    var materialDataSource: [Array<Any>]!
+    var materialDataSource: [MateriaGroupModel]!
     
     var showType: ServantInfoType?
 
@@ -51,7 +51,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         servantModel = ServantModel()
         nameLabel.text = servantModel.name
         skillDataSource = [servantModel.keepSkillGroupModel, servantModel.careerSkillGroupModel, servantModel.npSkillGroupModel];
-        materialDataSource = [servantModel.evolutionArray, servantModel.evolutionArray]
+        materialDataSource = [servantModel.evolutionGroupModel, servantModel.intensifyGroupModel]
         
         performSelector(onMainThread: #selector(scrollToDefaultServantPhoto), with: nil, waitUntilDone: false)
     }
@@ -153,13 +153,9 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         return number
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 44
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var number = 0
-        number = (showType == ServantInfoType.skill ?  skillDataSource[section].skillArrry.count : materialDataSource[section].count)
+        number = (showType == ServantInfoType.skill ?  skillDataSource[section].skillArrry.count : materialDataSource[section].materiaArrry.count)
         return number
     }
     
@@ -202,8 +198,8 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         else {
             cellIdentifier = NSStringFromClass(MaterialCell.self)
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! MaterialCell
-            let sectionArray = materialDataSource[indexPath.section]
-            let evolutionModel = sectionArray[indexPath.row] as! EvolutionModel
+            let evolutionGroupModel = materialDataSource[indexPath.section]
+            let evolutionModel = evolutionGroupModel.materiaArrry[indexPath.row]
             
             var i = 0
             for needMaterialModel in evolutionModel.evolutionArray {
@@ -240,6 +236,28 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
             rowHeight = 20+50+10
         }
         return CGFloat(rowHeight)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.lightGray
+        
+        let headerLabel = UILabel(frame: CGRect (x: 10, y: 0, width: tableView.frame.size.width, height: 40))
+        headerView.addSubview(headerLabel)
+        
+        if showType ==  ServantInfoType.skill {
+            let skillGroupModel = skillDataSource[section]
+            headerLabel.text = skillGroupModel.skillType;
+        }
+        else {
+            let evolutionGroupModel = materialDataSource[section]
+            headerLabel.text = evolutionGroupModel.materiaType;
+        }
+        return headerView
     }
     
     //MARK: - UICollectionViewDataSource
