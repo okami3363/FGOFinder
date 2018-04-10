@@ -14,6 +14,8 @@ class ServantModel: NSObject {
     var iconURL: String!
     
     var photosArray: [String]!
+    
+    var valueModel: ValueModel!
     var keepSkillGroupModel: SkillGroupModel!
     var careerSkillGroupModel: SkillGroupModel!
     var npSkillGroupModel: SkillGroupModel!
@@ -27,6 +29,8 @@ class ServantModel: NSObject {
     
     override init() {
         super.init()
+        
+        name = "艾蕾修卡"
         iconURL = "https://kazemai.github.io/fgo-vz/common/images/icon/faces/3032000.png"
         
         photosArray = ["https://kazemai.github.io/fgo-vz/common/images/CharaGraph/303200a.png",
@@ -95,6 +99,7 @@ class ServantModel: NSObject {
     }
     
     func testData() -> Void {
+        
         let needMaterial1 = NeedMaterialModel()
         needMaterial1.material = MaterialModel()
         needMaterial1.material.iconURL = "https://kazemai.github.io/fgo-vz/common/images/icon/items/7003.png"
@@ -164,9 +169,36 @@ class ServantModel: NSObject {
         intensifyGroupModel = MateriaGroupModel()
         intensifyGroupModel.materiaType = "技能強化"
         intensifyGroupModel.materiaArrry = [evolution1, evolution2, evolution3, evolution4, evolution1, evolution2, evolution3, evolution4, evolution1, evolution2]
+        
+        valueModel = ValueModel()
+        valueModel.number = "No.196"
+        valueModel.start = "5"
+        valueModel.career = "Lancer"
+        valueModel.sort = "地"
+        valueModel.hp = "2356 / 16065"
+        valueModel.atk = "1598 / 10343"
+        valueModel.painter = "森井しづき"
+        valueModel.cv = "植田佳奈"
+        valueModel.property = "混沌・惡"
+        valueModel.sex = "女性"
     }
 }
 
+//MARK: - ValueModel
+class ValueModel: NSObject {
+    var number: String!
+    var career: String!
+    var start: String!
+    var sort: String!
+    var hp: String!
+    var atk: String!
+    var painter: String!
+    var cv: String!
+    var property:String!
+    var sex: String!
+}
+
+//MARK: - SkillGroupModel
 class SkillGroupModel: NSObject {
     var skillType: String!
     var skillArrry: [KeepSkillModel]!
@@ -217,6 +249,7 @@ class KeepSkillModel: NSObject {
     }
 }
 
+//MARK: - MateriaGroupModel
 class MateriaGroupModel: NSObject {
     var materiaType: String!
     var materiaArrry: [EvolutionModel]!
