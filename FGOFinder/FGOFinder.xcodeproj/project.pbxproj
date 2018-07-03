@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		630D0DCC20EB7C2F0029FF01 /* ADCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D0DCB20EB7C2F0029FF01 /* ADCell.swift */; };
 		6325AB5820295FD200D7672D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6325AB5720295FD200D7672D /* AppDelegate.swift */; };
 		6325AB6120295FD200D7672D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6325AB6020295FD200D7672D /* Assets.xcassets */; };
 		6325AB6420295FD200D7672D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6325AB6220295FD200D7672D /* LaunchScreen.storyboard */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		630D0DCB20EB7C2F0029FF01 /* ADCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADCell.swift; sourceTree = "<group>"; };
 		6325AB5420295FD200D7672D /* FGOFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FGOFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6325AB5720295FD200D7672D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6325AB6020295FD200D7672D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				63680E3F205930FB0002933F /* KeepSkillsCell.swift */,
 				7157122620599160008CF524 /* CareerSkillsCell.swift */,
 				71B202E5205D9833001C630C /* NoblePhantasmsCell.swift */,
+				630D0DCB20EB7C2F0029FF01 /* ADCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -178,7 +181,6 @@
 				6325AB5120295FD200D7672D /* Frameworks */,
 				6325AB5220295FD200D7672D /* Resources */,
 				E1AF0A0552F82D224B0B72B6 /* [CP] Embed Pods Frameworks */,
-				352A606B89C4F02DB9172CE6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -236,21 +238,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		352A606B89C4F02DB9172CE6 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FGOFinder/Pods-FGOFinder-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		C6B7FEFF57FAF1E05C52820B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -306,6 +293,7 @@
 				63680E44205930FB0002933F /* ServantModel.swift in Sources */,
 				63731B312060A8F500109FD3 /* MaterialCell.swift in Sources */,
 				71000EAE2054500F00C2A6D1 /* FFRequestHandler.swift in Sources */,
+				630D0DCC20EB7C2F0029FF01 /* ADCell.swift in Sources */,
 				63680E46205930FB0002933F /* ServantPhotoCell.swift in Sources */,
 				7159F42E20601DB900A32F81 /* MaterialModel.swift in Sources */,
 				71000EAD2054500F00C2A6D1 /* LayoutFormula.swift in Sources */,
@@ -443,7 +431,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P6VW4F8FQT;
+				DEVELOPMENT_TEAM = 93JYKDGTM5;
 				INFOPLIST_FILE = FGOFinder/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -460,7 +448,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P6VW4F8FQT;
+				DEVELOPMENT_TEAM = 93JYKDGTM5;
 				INFOPLIST_FILE = FGOFinder/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

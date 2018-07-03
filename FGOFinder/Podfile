@@ -5,5 +5,6 @@ use_frameworks!
 
 pod 'Alamofire', '~> 4.6'
 pod 'Kingfisher', '~> 4.6'
+pod 'Google-Mobile-Ads-SDK'
 
 end
