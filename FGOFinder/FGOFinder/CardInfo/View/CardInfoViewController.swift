@@ -50,14 +50,14 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         showType = .skill
         servantModel = ServantModel()
         nameLabel.text = servantModel.name
-        skillDataSource = [servantModel.keepSkillGroupModel, servantModel.careerSkillGroupModel, servantModel.npSkillGroupModel];
+        skillDataSource = [servantModel.keepSkillGroupModel, servantModel.careerSkillGroupModel, servantModel.npSkillGroupModel, servantModel.adGroupModel];
         materialDataSource = [servantModel.evolutionGroupModel, servantModel.intensifyGroupModel]
         
         performSelector(onMainThread: #selector(scrollToDefaultServantPhoto), with: nil, waitUntilDone: false)
     }
     
     @objc func scrollToDefaultServantPhoto() -> Void {
-        let rect = CGRect (x: servantPhotoWidth*3, y: 0, width: servantPhotoWidth, height: servantPhotoHeight)
+        let rect = CGRect(x: servantPhotoWidth*3, y: 0, width: servantPhotoWidth, height: servantPhotoHeight)
         self.collectionView.scrollRectToVisible(rect, animated: false)
     }
     
@@ -67,7 +67,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         additionalSafeAreaInsets = LayoutFormula().landscapeAdditionalSafeAreaInsets()
         
         backButton = UIButton.init(type: .custom)
-        backButton.frame = CGRect (x: 0, y: 0, width: additionalSafeAreaInsets.left+15, height: additionalSafeAreaInsets.left)
+        backButton.frame = CGRect(x: 0, y: 0, width: additionalSafeAreaInsets.left+15, height: additionalSafeAreaInsets.left)
         backButton.setTitle("<", for: .normal)
         backButton.setTitleColor(UIColor.black, for: .normal)
 //        backButton.layer.borderColor = UIColor.blue.cgColor
@@ -83,7 +83,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         layout.minimumLineSpacing = 0
         layout.itemSize = CGSize (width: servantPhotoWidth, height: servantPhotoHeight)
         
-        collectionView = UICollectionView.init(frame: CGRect (x: backButton.frame.origin.x+backButton.frame.size.width, y: 0, width: servantPhotoWidth, height: servantPhotoHeight), collectionViewLayout:layout)
+        collectionView = UICollectionView.init(frame: CGRect(x: backButton.frame.origin.x+backButton.frame.size.width, y: 0, width: servantPhotoWidth, height: servantPhotoHeight), collectionViewLayout:layout)
         collectionView.backgroundColor = UIColor.clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = true
@@ -91,7 +91,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         collectionView.register(ServantPhotoCell.self, forCellWithReuseIdentifier: NSStringFromClass(ServantPhotoCell.self))
         view.addSubview(collectionView)
         
-        nameLabel = UILabel.init(frame: CGRect (x: collectionView.frame.origin.x+collectionView.frame.size.width, y: 0, width: UIScreen.main.bounds.size.width-(collectionView.frame.origin.x+collectionView.frame.size.width)-additionalSafeAreaInsets.right, height: additionalSafeAreaInsets.left))
+        nameLabel = UILabel.init(frame: CGRect(x: collectionView.frame.origin.x+collectionView.frame.size.width, y: 0, width: UIScreen.main.bounds.size.width-(collectionView.frame.origin.x+collectionView.frame.size.width)-additionalSafeAreaInsets.right, height: additionalSafeAreaInsets.left))
 //        nameLabel.backgroundColor = UIColor.blue
         nameLabel.numberOfLines = 2
         nameLabel.adjustsFontSizeToFitWidth = true
@@ -101,7 +101,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         var actionButtonWidth = (UIScreen.main.bounds.size.width-(collectionView.frame.origin.x+collectionView.frame.size.width)-(10*3))/2
         actionButtonWidth = ceil(actionButtonWidth)
         skillButton = UIButton.init(type: .custom)
-        skillButton.frame = CGRect (x: nameLabel.frame.origin.x+10, y: nameLabel.frame.origin.y+nameLabel.frame.size.height, width: actionButtonWidth, height: 44)
+        skillButton.frame = CGRect(x: nameLabel.frame.origin.x+10, y: nameLabel.frame.origin.y+nameLabel.frame.size.height, width: actionButtonWidth, height: 44)
         skillButton.setTitle("技能寶具", for: .normal)
         skillButton.setTitleColor(UIColor.black, for: .normal)
         skillButton.layer.borderWidth = 1
@@ -110,7 +110,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         view.addSubview(skillButton)
         
         materialButton = UIButton.init(type: .custom)
-        materialButton.frame = CGRect (x: skillButton.frame.origin.x+skillButton.frame.size.width+10, y: skillButton.frame.origin.y, width: skillButton.frame.size.width, height: skillButton.frame.size.height)
+        materialButton.frame = CGRect(x: skillButton.frame.origin.x+skillButton.frame.size.width+10, y: skillButton.frame.origin.y, width: skillButton.frame.size.width, height: skillButton.frame.size.height)
         materialButton.setTitle("強化素材", for: .normal)
         materialButton.setTitleColor(UIColor.black, for: .normal)
         materialButton.layer.borderWidth = 1
@@ -118,7 +118,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         materialButton.addTarget(self, action: #selector(materialAction(sender:)), for: .touchUpInside)
         view.addSubview(materialButton)
         
-        tableView = UITableView.init(frame: CGRect (x: collectionView.frame.origin.x+collectionView.frame.size.width, y: skillButton.frame.origin.y+skillButton.frame.size.height, width: UIScreen.main.bounds.width-(additionalSafeAreaInsets.left+additionalSafeAreaInsets.right)-collectionView.frame.size.width, height: servantPhotoHeight-nameLabel.frame.size.height-skillButton.frame.size.height), style: .grouped)
+        tableView = UITableView.init(frame: CGRect(x: collectionView.frame.origin.x+collectionView.frame.size.width, y: skillButton.frame.origin.y+skillButton.frame.size.height, width: UIScreen.main.bounds.width-(additionalSafeAreaInsets.left+additionalSafeAreaInsets.right)-collectionView.frame.size.width, height: servantPhotoHeight-nameLabel.frame.size.height-skillButton.frame.size.height), style: .grouped)
         tableView.backgroundColor = UIColor.clear
         tableView.showsVerticalScrollIndicator = false
         tableView.allowsSelection = false
@@ -128,6 +128,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         tableView.register(CareerSkillsCell.self, forCellReuseIdentifier: NSStringFromClass(CareerSkillsCell.self))
         tableView.register(NoblePhantasmsCell.self, forCellReuseIdentifier: NSStringFromClass(NoblePhantasmsCell.self))
         tableView.register(MaterialCell.self, forCellReuseIdentifier: NSStringFromClass(MaterialCell.self))
+        tableView.register(ADCell.self, forCellReuseIdentifier: NSStringFromClass(ADCell.self))
         
         view.addSubview(tableView)
     }
@@ -164,33 +165,38 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         var cellIdentifier = ""
         
         if showType ==  ServantInfoType.skill {
-            switch indexPath.section {
-            case 0:
+            let skillGroupModel = skillDataSource[indexPath.section]
+            let keepSkillModel: KeepSkillModel = skillGroupModel.skillArrry[indexPath.row]
+            
+            if keepSkillModel.isMember(of: KeepSkillModel.self) {
                 cellIdentifier = NSStringFromClass(KeepSkillsCell.self)
-            case 1:
+            }
+            else if keepSkillModel.isMember(of: CareerSkillModel.self) {
                 cellIdentifier = NSStringFromClass(CareerSkillsCell.self)
-            case 2:
+            }
+            else if keepSkillModel.isMember(of: NoblePhantasmsModel.self) {
                 cellIdentifier = NSStringFromClass(NoblePhantasmsCell.self)
-            default: break
+            }
+            else if keepSkillModel.isMember(of: ADModel.self) {
+                cellIdentifier = NSStringFromClass(ADCell.self)
             }
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! KeepSkillsCell
-            if indexPath.section == 0 || indexPath.section == 1 || indexPath.section == 2 {
-                let skillGroupModel = skillDataSource[indexPath.section]
-                let keepSkillModel: KeepSkillModel = skillGroupModel.skillArrry[indexPath.row]
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+            
+            if  keepSkillModel.isMember(of: KeepSkillModel.self) || keepSkillModel.isMember(of: CareerSkillModel.self) || keepSkillModel.isMember(of: NoblePhantasmsModel.self) {
                 
                 var i = 0
                 for skillDescription in keepSkillModel.descriptionArrry! {
-                    let skillDescriptionLabel:UILabel = cell.skillDescriptionLabelArray[i]
+                    let skillDescriptionLabel:UILabel = (cell as! KeepSkillsCell).skillDescriptionLabelArray[i]
                     skillDescriptionLabel.frame = keepSkillModel.descriptionSizeArray![i]
                     skillDescriptionLabel.text = skillDescription
                     i+=1
                 }
                 
-                cell.skillImageView.kf.setImage(with: URL(string: keepSkillModel.iconURL))
-                cell.skillNameLabel.text = keepSkillModel.name
-                cell.skillColdDownLabel.text = keepSkillModel.coldDown
-                cell.skillWhenGetLabel.text = keepSkillModel.whenGet
+                (cell as! KeepSkillsCell).skillImageView.kf.setImage(with: URL(string: keepSkillModel.iconURL))
+                (cell as! KeepSkillsCell).skillNameLabel.text = keepSkillModel.name
+                (cell as! KeepSkillsCell).skillColdDownLabel.text = keepSkillModel.coldDown
+                (cell as! KeepSkillsCell).skillWhenGetLabel.text = keepSkillModel.whenGet
             }
             
             return cell
@@ -224,12 +230,15 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
     //MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var rowHeight = 0
-        
         if showType ==  ServantInfoType.skill {
-            if indexPath.section == 0 || indexPath.section == 1 || indexPath.section == 2 {
-                let skillGroupModel = skillDataSource[indexPath.section]
-                let keepSkillModel: KeepSkillModel = skillGroupModel.skillArrry[indexPath.row]
-                rowHeight = rowHeight+10+50+8+Int(keepSkillModel.titleDescriptionHeight)+10
+            let skillGroupModel = skillDataSource[indexPath.section]
+            let keepSkillModel: KeepSkillModel = skillGroupModel.skillArrry[indexPath.row]
+            
+            if  keepSkillModel.isMember(of: KeepSkillModel.self) || keepSkillModel.isMember(of: CareerSkillModel.self) || keepSkillModel.isMember(of: NoblePhantasmsModel.self) {
+                rowHeight = 10+50+8+Int(keepSkillModel.titleDescriptionHeight)+10
+            }
+            else if keepSkillModel.isMember(of: ADModel.self) {
+                rowHeight = keepSkillModel.titleDescriptionHeight+10
             }
         }
         else {
@@ -246,7 +255,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
         let headerView = UIView()
         headerView.backgroundColor = UIColor.lightGray
         
-        let headerLabel = UILabel(frame: CGRect (x: 10, y: 0, width: tableView.frame.size.width, height: 40))
+        let headerLabel = UILabel(frame: CGRect(x: 10, y: 0, width: tableView.frame.size.width, height: 40))
         headerView.addSubview(headerLabel)
         
         if showType ==  ServantInfoType.skill {
@@ -276,7 +285,7 @@ class CardInfoViewController: UIViewController, UICollectionViewDataSource, UITa
             cell!.servantImageView.frame = cell!.servantImageDefaultRect
 
         case 1:
-            cell!.servantImageView.frame = CGRect (x: cell!.servantImageDefaultRect.origin.x-(cell!.servantImageDefaultRect.size.width/2), y: cell!.servantImageDefaultRect.origin.y, width: cell!.servantImageDefaultRect.size.width, height: cell!.servantImageDefaultRect.size.height)
+            cell!.servantImageView.frame = CGRect(x: cell!.servantImageDefaultRect.origin.x-(cell!.servantImageDefaultRect.size.width/2), y: cell!.servantImageDefaultRect.origin.y, width: cell!.servantImageDefaultRect.size.width, height: cell!.servantImageDefaultRect.size.height)
 
         default:
             cell!.servantImageView.frame = cell!.servantImageDefaultRect

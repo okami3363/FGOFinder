@@ -74,7 +74,7 @@ class CardsViewController: UIViewController, UICollectionViewDataSource, UIColle
         view.addSubview(actionBar)
         
         servant = UIButton.init(type: .custom)
-        servant.frame = CGRect (x: additionalSafeAreaInsets.left+15, y: 0, width: 80, height: 40)
+        servant.frame = CGRect(x: additionalSafeAreaInsets.left+15, y: 0, width: 80, height: 40)
         servant.setTitle("Servant", for: .normal)
         servant.setTitleColor(UIColor.black, for: .normal)
         servant.layer.borderColor = UIColor.black.cgColor
@@ -83,7 +83,7 @@ class CardsViewController: UIViewController, UICollectionViewDataSource, UIColle
         actionBar.addSubview(servant)
         
         craftEssence = UIButton.init(type: .custom)
-        craftEssence.frame = CGRect (x: servant.frame.origin.x+servant.frame.size.width+10, y: servant.frame.origin.y, width: 80, height: servant.frame.size.height)
+        craftEssence.frame = CGRect(x: servant.frame.origin.x+servant.frame.size.width+10, y: servant.frame.origin.y, width: 80, height: servant.frame.size.height)
         craftEssence.setTitle("概念禮裝", for: .normal)
         craftEssence.setTitleColor(UIColor.black, for: .normal)
         craftEssence.layer.borderColor = UIColor.black.cgColor
@@ -98,7 +98,7 @@ class CardsViewController: UIViewController, UICollectionViewDataSource, UIColle
         layout.sectionInset = UIEdgeInsetsMake(10, additionalSafeAreaInsets.left, 10, additionalSafeAreaInsets.right);
         layout.itemSize = CGSize (width: width, height: width)
         
-        collectionView = UICollectionView.init(frame: CGRect (x: actionBar.frame.origin.x, y: actionBar.frame.origin.y+actionBar.frame.size.height, width: actionBar.frame.size.width, height: UIScreen.main.bounds.size.height-actionBar.frame.size.height), collectionViewLayout:layout!)
+        collectionView = UICollectionView.init(frame: CGRect(x: actionBar.frame.origin.x, y: actionBar.frame.origin.y+actionBar.frame.size.height, width: actionBar.frame.size.width, height: UIScreen.main.bounds.size.height-actionBar.frame.size.height), collectionViewLayout:layout!)
         collectionView.backgroundColor = UIColor.clear
         collectionView.showsVerticalScrollIndicator = false
         collectionView.dataSource = self

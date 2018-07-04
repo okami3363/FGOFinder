@@ -9,7 +9,7 @@
 import UIKit
 import GoogleMobileAds
 
-class ADCell: UITableViewCell, GADVideoControllerDelegate {
+class ADCell: UITableViewCell, GADAdLoaderDelegate, GADUnifiedNativeAdLoaderDelegate {
     
     let adUnitID = "ca-app-pub-3940256099942544/3986624511"
     
@@ -26,13 +26,18 @@ class ADCell: UITableViewCell, GADVideoControllerDelegate {
     }
     
     func setupUI() -> Void {
-        nativeAdView = FFUnifiedNativeAdView(frame: CGRect (x: 0, y: 0, width: frame.size.width, height: frame.size.height))
+        nativeAdView = FFUnifiedNativeAdView(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
+        nativeAdView.backgroundColor = UIColor.gray
         addSubview(nativeAdView)
         
         adLoader = GADAdLoader(adUnitID: adUnitID, rootViewController: nil,
                                adTypes: [ .unifiedNative ], options: nil)
-        adLoader.delegate = self as? GADAdLoaderDelegate
+        adLoader.delegate = self
         adLoader.load(GADRequest())
+    }
+    
+    func adLoader(_ adLoader: GADAdLoader, didFailToReceiveAdWithError error: GADRequestError) {
+        print("\(adLoader) failed with error: \(error.localizedDescription)")
     }
     
     //MARK: - GADVideoControllerDelegate
@@ -162,7 +167,7 @@ class FFUnifiedNativeAdView: GADUnifiedNativeAdView {
     }
     
     func setupUI() -> Void {
-        ffImageView = UIImageView(frame: CGRect (x: 0, y: 0, width: frame.size.width, height: frame.size.height));
+        ffImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height));
         imageView = ffImageView;
         addSubview(ffImageView)
     }

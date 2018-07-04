@@ -21,7 +21,7 @@ class ServantPhotoCell: UICollectionViewCell {
     func setupUI() -> Void {
         contentView.layer.masksToBounds = true
         
-        servantImageDefaultRect = CGRect (x: 0, y: 0, width: frame.size.width*2, height: frame.size.height)
+        servantImageDefaultRect = CGRect(x: 0, y: 0, width: frame.size.width*2, height: frame.size.height)
         
         servantImageView = UIImageView(frame: servantImageDefaultRect)
         servantImageView.contentMode = .scaleAspectFit
